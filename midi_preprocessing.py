@@ -8,7 +8,7 @@ args = parser.parse_args()
 
 song = pm.PrettyMIDI(args.midi_input)
 inst = song.instruments[0].notes
-note_list = [[note.start, note.end, note.pitch, note.velocity] for note in inst]
+note_list = sorted([[note.start, note.end, note.pitch, note.velocity] for note in inst])
 
 def normalise_note_events(notes):
     start_time = notes[0][0]
@@ -47,7 +47,7 @@ for i, note in enumerate(note_list):
     diff = round(note_list[i][1] - note_list[i][0], 1)
     if diff <= 0:
         continue
-    new_note = pm.Note(velocity=100, pitch=note[2], start=round(note[0], 1), end=round(note[1], 1))
+    new_note = pm.Note(velocity=100, pitch=note[2], start=round(note[0], 1), end=round(note[1], 1)-0.01)
     kboard.notes.append(new_note)
 melody.instruments.append(kboard)
 
