@@ -14,10 +14,10 @@ def create_midi_melody(note_durations, pitch_input, melody_output, duration=0.3)
     ix = 0
     for item in note_durations:
         if item < 0:
-            end = end + (-1 * item * duration)
+            end = round(end + (-1 * item * duration), 1)
             continue
         start = end
-        end = start + (item * duration)
+        end = round(start + (item * duration), 1)
         pitch = pitches[ix]
         ix += 1
         new_note = pm.Note(velocity=100, pitch=pitch, start=start, end=end)
