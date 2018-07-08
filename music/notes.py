@@ -1,180 +1,99 @@
-class PitchObject:
+class Note:
 
-    def __init__(self, name, duration):
+    def __init__(self, pitch=None, duration=None):
+        self.pitch = pitch
+        self.duration = duration
+        self.time_remaining = duration
+
+
+class Chord:
+
+    def __init__(self, name=None, duration=None):
         self.name = name
         self.duration = duration
-        self.bar_number = None
-        self.beat_of_bar = None
-        self.beat_of_piece = None
-        self.piece = None
-        self.next = None
-
-    def get_bar_number(self, prev, piece):
-        self.bar_number = prev.bar_number + (prev.beat_of_bar + prev.duration) // piece.beats_per_bar
-
-    def get_beat_of_bar(self, prev, piece):
-        self.beat_of_bar = (prev.beat_of_bar + prev.duration) % piece.beats_per_bar
-
-
-class Note(PitchObject):
-
-    def __init__(self, piece_position=None, bar_position=None):
-        self.piece_position = piece_position
-        self.bar_position = bar_position
-
-    def get_beat_of_note(self, prev_note, piece):
-        self.beat_of_bar = (prev_note.beat_of_bar + prev_note.duration) % piece.beats_per_bar
-
-    def get_beat_of_piece(self, prev):
-        pass
-
-
-class Chord(PitchObject):
-
-    def __init__(self):
         self.chord_family = None
-
-    def get_chord_family(self, name):
-        pass
+        self.time_remaining = duration
 
 
 class Bar:
 
-    def __init__(self, number=None):
+    def __init__(self, number=None, duration=None):
         self.number = number
-        self.beats_in_bar = 8
+        self.duration = duration
+        self.time_remaining = duration
 
 
-class TimeStep:
+class Timestep:
 
     """
     Every unique note/chord/bar combination gets its own timestep.
     """
 
-    def __init__(self, note=None, chord=None, bar=None):
+    def __init__(self, note, chord, bar, duration, is_tied, is_barline):
         self.note = note
         self.chord = chord
         self.bar = bar
         self.duration = None
-        self.is_front_tied = None
-        self.is_back_tied = None
-        self.beat_of_bar = None
-        self.is_bar_line = False
+        self.is_tied = False
+        self.is_barline = False
+
 
 class Piece:
 
-    def __init__(self, name=None, starting_beat=0):
+    def __init__(self, name=None, key_signature=None, time_signature=None):
         self.name = name
-        self.beats_per_bar = 8
-        self.starting_beat = starting_beat
-        self.start_note = None
-        self.start_chord = None
+        self.key_signature = key_signature
+        self.time_signature = time_signature
+        self.anacrusis_duration = None
 
-    def get_upbeat_duration(self):
+    def get_anacrusis_duration(self):
         pass
 
-    def get_timestep_sequence(self):
-        pass
+    def get_timestep_sequence(self, notes, chords, bars):
+        self.timesteps = []
+        this_note = Note(duration=0)
+        this_chord = Chord(duration=0)
+        this_bar = Bar(duration=0)
+        n = -1
+        c = -1
+        b = -1
 
-def find_next_timestep(last_timestep):
-    pass
+        while n < len(notes) or c < len(chords) or b < len(bars):
+            timestep_duration = min(
+                this_note.time_remaining,
+                this_chord.time_remaining,
+                this_bar.time_remaining
+            )
+            if timestep_duration > 0:
+                this_timestep = Timestep(
+                    note=this_note.pitch,
+                    chord=this_chord.name,
+                    bar=this_bar.number,
+                    duration=timestep_duration,
+                    is_barline=is_barline
+                )
+                self.timesteps.append(this_timestep)
 
+            elif piece.anacrusis_duration:
+                this_chord.time_remaining = piece.anacrusis_duration
+                this_bar.time_remaining = piece.anacrusis_duration
 
-pieces = {
-    "fall": [Note()]
-}
+            this_note.time_remaining -= timestep_duration
+            if this_note.time_remaining == 0:
+                n += 1
+                this_note = notes[n]
+            else:
+                this_timestep.is_tied = True
 
-# Store three time pointers, for note, chord, and bar.
-# Increment the time every time one of them changes, and create new timestep.
+            this_chord.time_remaining -= timestep_duration
+            if this_chord.time_remaining == 0:
+                c += 1
+                this_chord = chords[c]
 
-def create_timesteps(piece):
-
-    timesteps = []
-
-    start_note = piece.start_note
-    start_chord = piece.start_chord
-    next_bar = 0
-
-    if start_note.bar_number < start_chord.bar_number:
-        curr_chord = None
-        next_chord = start_chord
-        timestep = TimeStep(curr_note, None)
-        curr_note = curr_note.next
-
-    while curr_note.next != None:
-        timestep = find_next_timestep(curr_note, curr_chord, curr_bar, piece)
-        timesteps.append(timestep)
-
-        if first_note.bar_number < first_chord.bar_number:
-            timestep = TimeStep(first_note)
-        else:
-            timestep = TimeStep(first_note, first_chord)
-
-# If beat % beats_per_bar == 0, then is_bar_line = True
-
-
-def find_next_timestep(next_note, next_chord, next_bar, piece):
-
-    if next_bar.time < next_note.time and next_bar.time < next_chord.time:
-        timestep = TimeStep(next_note.prev, next_chord.prev, is_bar_line=True, is_back_tied=True)
-        next_bar = next_bar.next
-
-    else:
-        if next_note.time < next_chord.time:
-            timestep = TimeStep(next_note, next_chord.prev)
-            timestep_beat = next_note.beat_of_bar
-            next_note = next_note.next
-
-        elif next_chord.time < next_note.time:
-            timestep = TimeStep(next_note.prev, next_chord, is_back_tied=True)
-            timestep_beat = next_chord.beat_of_bar
-            next_chord = next_chord.next
-
-        else:
-            timestep = TimeStep(next_note, next_chord)
-            timestep_beat = next_note.beat_of_bar
-            next_note = next_note.next
-            next_chord = next_chord.next
-
-        if timestep_beat % next_bar.prev.beats_in_bar == 0:
-            timestep.is_bar_line = True
-            curr_bar = next_bar
-
-    return timestep
-
-
-def find_next_timestep(curr_note, curr_chord, curr_bar, piece):
-
-    next_bar = curr_bar.next
-    next_note = curr_note.next
-    next_chord = curr_chord.next
-
-    if next_bar.time < next_note.time and next_bar.time < next_chord.time:
-        timestep = TimeStep(curr_note, curr_chord, is_bar_line=True, is_back_tied=True)
-        curr_bar = next_bar
-
-    else:
-        if next_note.time < next_chord.time:
-            timestep = TimeStep(next_note, curr_chord)
-            timestep_beat = next_note.beat_of_bar
-            curr_note = next_note
-
-        elif next_chord.time < next_note.time:
-            timestep = TimeStep(curr_note, next_chord, is_back_tied=True)
-            timestep_beat = next_chord.beat_of_bar
-            curr_chord = next_chord
-
-        else:
-            timestep = TimeStep(next_note, next_chord)
-            timestep_beat = next_note.beat_of_bar
-            curr_note = next_note
-            curr_chord = next_chord
-
-        if timestep_beat % curr_bar.beats_in_bar == 0:
-            timestep.is_bar_line = True
-            curr_bar = next_bar
-
-    return timestep
-
-# Do we need to make the previous timestep "is_front_tied = True" if the current timestep has "is_front_tied = False"?
-# Seems redundant, given that you can't have one without the other, but might it influence the music generation?
+            this_bar.time_remaining -= timestep_duration
+            if this_bar.time_remaining == 0:
+                b += 1
+                this_bar = bars[b]
+                is_barline = True
+            else:
+                is_barline = False
