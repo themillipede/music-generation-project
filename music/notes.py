@@ -74,9 +74,9 @@ class Piece:
                 )
                 self.timesteps.append(this_timestep)
 
-            elif piece.anacrusis_duration:
-                this_chord.time_remaining = piece.anacrusis_duration
-                this_bar.time_remaining = piece.anacrusis_duration
+            elif self.anacrusis_duration:
+                this_chord.time_remaining = self.anacrusis_duration
+                this_bar.time_remaining = self.anacrusis_duration
 
             this_note.time_remaining -= timestep_duration
             if this_note.time_remaining == 0:
