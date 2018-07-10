@@ -29,25 +29,22 @@ class Timestep:
     Every unique note/chord/bar combination gets its own timestep.
     """
 
-    def __init__(self, note, chord, bar, duration, is_tied, is_barline):
+    def __init__(self, note=None, chord=None, bar=None, duration=None, is_tied=False, is_barline=False):
         self.note = note
         self.chord = chord
         self.bar = bar
-        self.duration = None
-        self.is_tied = False
-        self.is_barline = False
+        self.duration = duration
+        self.is_tied = is_tied
+        self.is_barline = is_barline
 
 
 class Piece:
 
-    def __init__(self, name=None, key_signature=None, time_signature=None):
+    def __init__(self, name=None, key_signature=None, time_signature=None, anacrusis_duration=None):
         self.name = name
         self.key_signature = key_signature
         self.time_signature = time_signature
-        self.anacrusis_duration = None
-
-    def get_anacrusis_duration(self):
-        pass
+        self.anacrusis_duration = anacrusis_duration
 
     def get_timestep_sequence(self, notes, chords, bars):
         self.timesteps = []
@@ -64,16 +61,17 @@ class Piece:
                 this_chord.time_remaining,
                 this_bar.time_remaining
             )
+
             if timestep_duration > 0:
                 this_timestep = Timestep(
                     note=this_note.pitch,
                     chord=this_chord.name,
                     bar=this_bar.number,
                     duration=timestep_duration,
+                    is_tied=False,
                     is_barline=is_barline
                 )
                 self.timesteps.append(this_timestep)
-
             elif self.anacrusis_duration:
                 this_chord.time_remaining = self.anacrusis_duration
                 this_bar.time_remaining = self.anacrusis_duration
@@ -81,19 +79,22 @@ class Piece:
             this_note.time_remaining -= timestep_duration
             if this_note.time_remaining == 0:
                 n += 1
-                this_note = notes[n]
+                if n < len(notes):
+                    this_note = notes[n]
             else:
                 this_timestep.is_tied = True
 
             this_chord.time_remaining -= timestep_duration
             if this_chord.time_remaining == 0:
                 c += 1
-                this_chord = chords[c]
+                if c < len(chords):
+                    this_chord = chords[c]
 
             this_bar.time_remaining -= timestep_duration
             if this_bar.time_remaining == 0:
                 b += 1
-                this_bar = bars[b]
-                is_barline = True
+                if b < len(bars):
+                    this_bar = bars[b]
+                    is_barline = True
             else:
                 is_barline = False
