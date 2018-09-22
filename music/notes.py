@@ -257,8 +257,10 @@ class Piece:
         n = -1
         c = -1
         b = -1
+        counter = 0
 
-        while n < len(self.melody) or c < len(self.chords) or b < len(self.bars):
+        while n < len(self.melody) or c < len(self.chords) or b < len(self.bars) and counter < 3:
+            counter += 1
             timestep_duration = min(
                 this_note.time_remaining,
                 this_chord.time_remaining,
@@ -273,6 +275,7 @@ class Piece:
                     is_tied=False,
                     is_barline=is_barline
                 )
+                print this_timestep.duration
                 self.timesteps.append(this_timestep)
             elif self.pickup_duration:
                 this_chord.time_remaining = self.pickup_duration
