@@ -5,6 +5,50 @@ import string
 import json
 import re
 
+
+chord_quality = {
+    '': ('maj', None),
+    'm': ('min', None),
+    '+': ('aug', None),
+    'o': ('dim', None),
+    '7': ('maj', 'min'),
+    'M7': ('maj', 'maj'),
+    'm7': ('min', 'min'),
+    'mM7': ('min', 'maj'),
+    '+7': ('aug', 'min'),
+    '+M7': ('aug', 'maj'),
+    'o7': ('dim', 'dim'),
+    'ø7': ('dim', 'min')
+}
+
+triad_notes = {
+    'maj': set([0, 4, 7]),
+    'min': set([0, 3, 7]),
+    'aug': set([0, 4, 8]),
+    'dim': set([0, 3, 6])
+}
+
+seven_notes = {
+    'maj': 11,
+    'min': 10,
+    'dim': 9,
+    None: 0
+}
+
+position_map = {
+    1: 0,
+    2: 2,
+    3: 4,
+    4: 5,
+    5: 7,
+    6: 9,
+    7: 11,
+    9: 2,
+    11: 5,
+    13: 9
+}
+
+
 class Note:
     def __init__(self, pitch=None, duration=None):
         self.pitch = pitch
@@ -13,10 +57,11 @@ class Note:
 
 
 class Chord:
-    def __init__(self, root=None, type=None, alts=None, chordset=None, duration=None):
+    def __init__(self, root=None, kind=None, alts=None, bass=None, chordset=None, duration=None):
         self.root = root
-        self.type = type
+        self.kind = kind
         self.alts = alts
+        self.bass = bass
         self.chordset = chordset
         self.duration = duration
         self.time_remaining = duration
@@ -121,7 +166,7 @@ class Piece:
         :return: List of all chords, in order of appearance.
         """
         chords = []
-        l = self.chord_symbols.split(" ")
+        l = self.chord_symbols.split(' ')
         start_idx = None
         end_idx = None
         open_parens = 0
@@ -163,35 +208,36 @@ class Piece:
         elif type in ['()', 'sus']:
             chordset.add(index)
             if type == 'sus':
-                chordset.discard([position_map[3]])
+                chordset -= set([3, 4])
 
 
-    def get_chord(self, chord, chord_regex, alts_regex, chord_quality, triad_notes, seven_notes, position_map):
+    def get_chord(self, chord, chord_regex, alts_regex):
         chord_match = chord_regex.match(chord)
-        time = chord_match.group(1)
+        time = chord_match.group(1) or 1
         root = chord_match.group(2)
-        type = chord_match.group(3)
+        kind = chord_match.group(3)
         alts = chord_match.group(4)
         bass = chord_match.group(5) or root
 
-        chord_flavour = type.translate(None, string.digits)
-        extension = type.translate(None, chord_flavour)
+        chord_flavour = kind.translate(None, string.digits)
+        extension = kind.translate(None, chord_flavour)
         if extension in ('9', '11', '13'):
-            type = chord_flavour + str(7)
+            kind = chord_flavour + str(7)
             exts = set(range(9, int(extension) + 1, 2))
-        elif not extension:
+        else:
             exts = set()
 
-        triad = triad_notes[chord_quality[type[0]]]
-        seven = seven_notes[chord_quality[type[1]]]
-        chordset = triad.add(seven).add(exts)
+        triad = triad_notes[chord_quality[kind][0]]
+        seven = seven_notes[chord_quality[kind][1]]
+        chordset = (triad|exts)
+        chordset.add(seven)
         alts_lst = re.findall(alts_regex, alts)
         for alt in alts_lst:
             self.make_chord_alteration(alt, chordset, position_map)
-        return Chord(chordset=chordset, duration=round(time*120), bass=bass, root=root)
+        return Chord(root, kind, alts, bass, chordset, round(float(time)*120))
 
 
-    def get_chords(self, note_position, chord_breakdown):
+    def get_chords(self):
         chord_regex = re.compile(r'''
             (\d*)
             ([A-G][b#]?)
@@ -200,8 +246,7 @@ class Piece:
             (/([A-G][b#]?))?''', re.X)
         alts_regex = re.compile(r'(\((?:\d+)\)|[b#]\d+|sus\d+)')
         chord_sequence = self.get_chord_sequence()
-        chord_list = [self.get_chord(chord, chord_regex, alts_regex, chord_quality) for chord in chord_sequence]
-        return chord_list
+        self.chords = [self.get_chord(chord, chord_regex, alts_regex) for chord in chord_sequence]
 
 
     def get_timesteps(self):
@@ -222,7 +267,7 @@ class Piece:
             if timestep_duration > 0:
                 this_timestep = Timestep(
                     note=this_note.pitch,
-                    chord=this_chord.name,
+                    chord=this_chord.chordset,
                     bar=this_bar.number,
                     duration=timestep_duration,
                     is_tied=False,
@@ -274,7 +319,7 @@ piece_data = {
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [-1,1,1,1,1,3,-1,1,1,1,4,-1,1,1,1,1,2,1,1,1,1,2,1,2,-1,1,1,1,1,3,-1,1,1,1,1,2,1,12,-4,-1,1,1,1,1,3,-1,1,1,1,4,-1,1,1,1,1,2,1,1,1,1,2,1,2,-1,1,1,1,1,3,-1,1,1,1,1,2,1,12,-4,-2,1,1,1,3,-2,1,1,1,3,-2,1,1,1,3,-2,1,1,1,3,-2,2,2,2,2,2,2,2,4,4,4,4,-1,1,1,1,1,3,-1,1,1,1,4,-1,1,1,1,1,2,1,1,1,1,2,1,2,-1,1,1,1,1,3,-1,1,1,1,1,2,1,12,-4],
-    "chords": "[ Eb Eo7 Fm7 F#o7 Eb/G G7#5 Ab6 Db9 Eb C7b9 Fm7 Bb7 [ G7 C7 F7 Bb7 ] [ Eb6 Db9 Eb6 G7#5 ] ] 2Cm 2Ab7/C 2F7/C 2C7 Bb Bo7 Cm7 F7 Bb7 C7 F7 Bb7 Eb Eo7 Fm7 F#o7 Eb/G G7#5 Ab6 Db9 Eb C7b9 Fm7 Bb7 2Eb6 Fm7 Bb7"
+    "chords": "[ Eb Eo7 Fm7 F#o7 Eb/G G+7 Ab(6) Db9 Eb C7b9 Fm7 Bb7 [ G7 C7 F7 Bb7 ] [ Eb(6) Db9 Eb(6) G+7 ] ] 2Cm 2Ab7/C 2F7/C 2C7 Bb Bo7 Cm7 F7 Bb7 C7 F7 Bb7 Eb Eo7 Fm7 F#o7 Eb/G G+7 Ab(6) Db9 Eb C7b9 Fm7 Bb7 2Eb(6) Fm7 Bb7"
   },
   "agua_de_beber": {
     "composer": ["Antonio Carlos Jobim", "Norman Gimbel", "Vinicius De Moraes"],
@@ -283,7 +328,7 @@ piece_data = {
     "pickup": 0,
     "bars": "[8] * 48",
     "notes": [1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-4,1,1,6,1,1,6,-8,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-4,1,1,6,1,1,6,-2,1,2,2,4,4,6,2,2,7,-2,1,2,2,6,2,6,2,9,-2,1,2,2,4,4,6,2,2,7,-7,1,1,2,2,1,2,3,2,2,2,1,6,-2,1,1,1,1,12,1,1,1,1,3,1,1,1,-6,1,1,1,1,12,1,1,1,1,3,1,1,1,-12,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-4,1,1,6,1,1,6,-8],
-    "chords": "[ 2Am7 B7#9 E7#5 2Am7 B7#9 E7#5 2Am7 2FM7 2Am7 [ Em7b5 ] [ 2Am7 ] ] 2B7b9 2E7#5 4Am7 2Dm7 2G7 4CM7 B7 Bb7b5 Am7 Abo7 C9/G C7#9/G 2B7#9/F# 2B7b9 2E9sus4 4Am7 2D7 2Dm7 4Am7 2D7 2Dm7 2Am7 2Em7b5 2Am7 B7#9 E7#5 2Am7 B7#9 E7#5 2Am7 B7#9 E7#5 2Am7 2FM7 4Am7"
+    "chords": "[ 2Am7 B7#9 E+7 2Am7 B7#9 E+7 2Am7 2FM7 2Am7 [ 2Em7b5 ] [ 2Am7 ] ] 2B7b9 2E+7 4Am7 2Dm7 2G7 4CM7 B7 Bb7b5 Am7 Abo7 C9/G C7#9/G 2B7#9/F# 2B7b9 2E9sus4 4Am7 2D7 2Dm7 4Am7 2D7 2Dm7 2Am7 2Em7b5 2Am7 B7#9 E+7 2Am7 B7#9 E+7 2Am7 B7#9 E+7 2Am7 2FM7 4Am7"
   }
 }
 
@@ -304,5 +349,5 @@ for title, details in piece_data.items():
     piece.get_bars()
     piece.create_midi_melody('music/' + piece.name + '_pitches.MID', piece.name + '.MID')
     piece.get_melody(piece.name + '.MID')
-    piece.get_chord_sequence()
-    print piece.chord_symbols
+    piece.get_chords()
+    piece.get_timesteps()
