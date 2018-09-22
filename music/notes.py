@@ -22,10 +22,10 @@ chord_quality = {
 }
 
 triad_notes = {
-    'maj': set([0, 4, 7]),
-    'min': set([0, 3, 7]),
-    'aug': set([0, 4, 8]),
-    'dim': set([0, 3, 6])
+    'maj': {0, 4, 7},
+    'min': {0, 3, 7},
+    'aug': {0, 4, 8},
+    'dim': {0, 3, 6}
 }
 
 seven_notes = {
@@ -89,18 +89,19 @@ class Timestep:
 
 class Piece:
     def __init__(self, name, composer, key_signature, time_signature, pickup_duration,
-                 bar_durations, note_durations, chord_symbols):
+                 bar_durations, chord_symbols, note_durations):
         self.name = name
         self.composer = composer
         self.key_signature = key_signature
         self.time_signature = time_signature
         self.pickup_duration = pickup_duration
         self.bar_durations = bar_durations
-        self.note_durations = note_durations
         self.chord_symbols = chord_symbols
+        self.note_durations = note_durations
         self.bars = None
-        self.melody = None
         self.chords = None
+        self.melody = []
+        self.timesteps = []
 
 
     def get_bars(self):
@@ -135,7 +136,6 @@ class Piece:
 
 
     def get_melody(self, midi_data):
-        self.melody = []
         song = pm.PrettyMIDI(midi_data)
         inst = song.instruments[0].notes
         latest_time = 0
@@ -180,7 +180,7 @@ class Piece:
             elif item == ']':
                 if open_parens == 1 and l[i - 1] != ']':
                     chords.extend(l[start_idx:i])
-                elif l[i + 1] != ']':
+                elif open_parens == 2 and l[i + 1] != ']':
                     chords.extend(l[start_idx:end_idx])
                 open_parens -= 1
             else:
@@ -188,13 +188,13 @@ class Piece:
         return chords
 
 
-    def make_chord_alteration(self, alteration, chordset, position_map):
+    def make_chord_alteration(self, alteration, chordset):
         """
         :param alteration: String indicating the chord alteration, including the label of the affected
             note, and the alteration type: 'b', '#', '()', or 'sus'.
-        :param chordvec: 12-dimensional binary vector representing the 12 notes of the chromatic scale,
-            with positions 0, 4, and 7 set to 1, representing the major triad.
-        :return: Altered chordvec, with positions set to 1 indicating notes present in the chord.
+        :param chordset: Set containing the zero-indexed position in the 12-note chromatic scale of
+            all the notes in the chord of interest, prior to alteration.
+        :return: Chordset after alteration has been applied.
         """
         type = alteration.translate(None, string.digits)  # alteration type: 'b', '#', '()', or 'sus'
         note = int(alteration.translate(None, type))  # name(=number) of note affected by alteration
@@ -208,7 +208,7 @@ class Piece:
         elif type in ['()', 'sus']:
             chordset.add(index)
             if type == 'sus':
-                chordset -= set([3, 4])
+                chordset -= {3, 4}
 
 
     def get_chord(self, chord, chord_regex, alts_regex):
@@ -233,7 +233,7 @@ class Piece:
         chordset.add(seven)
         alts_lst = re.findall(alts_regex, alts)
         for alt in alts_lst:
-            self.make_chord_alteration(alt, chordset, position_map)
+            self.make_chord_alteration(alt, chordset)
         return Chord(root, kind, alts, bass, chordset, round(float(time)*120))
 
 
@@ -250,17 +250,14 @@ class Piece:
 
 
     def get_timesteps(self):
-        self.timesteps = []
         this_note = Note(duration=0)
         this_chord = Chord(duration=0)
         this_bar = Bar(duration=0)
         n = -1
         c = -1
         b = -1
-        counter = 0
 
-        while n < len(self.melody) or c < len(self.chords) or b < len(self.bars) and counter < 3:
-            counter += 1
+        while n < len(self.melody) or c < len(self.chords) or b < len(self.bars):
             timestep_duration = min(
                 this_note.time_remaining,
                 this_chord.time_remaining,
@@ -275,7 +272,6 @@ class Piece:
                     is_tied=False,
                     is_barline=is_barline
                 )
-                print this_timestep.duration
                 self.timesteps.append(this_timestep)
             elif self.pickup_duration:
                 this_chord.time_remaining = self.pickup_duration
@@ -305,39 +301,8 @@ class Piece:
                 is_barline = False
 
 
-piece_data = {
-  "afternoon_in_paris": {
-    "composer": ["John Lewis"],
-    "keysig": None,
-    "timesig": "4/4",
-    "pickup": 2,
-    "bars": "[8] * 32",
-    "notes": [1,1,-1,2,1,1,1,1,1,1,1,1,1,2,1,1,-1,2,1,1,1,1,1,1,1,1,1,2,1,1,-1,2,1,1,1,1,6,1,1,9,-6,1,1,-1,2,1,1,1,1,1,1,1,1,1,2,1,1,-1,2,1,1,1,1,1,1,1,1,1,2,1,1,-1,2,1,1,1,1,6,1,1,9,-4,2,1,7,1,7,1,7,1,7,1,7,1,7,1,8,7,1,1,-1,2,1,1,1,1,1,1,1,1,1,2,1,1,-1,2,1,1,1,1,1,1,1,1,1,2,1,1,-1,2,1,1,1,1,6,1,1,17],
-    "chords": "[ 2CM7 Cm7 F7 2BbM7 Bbm7 Eb7 2AbM7 Dm7 G7b9 [ CM7 Am7 Dm7 G7 ] [ 3CM7 Am7 ] ] 2Dm7 2G7 2CM7 2Am7 2Dm7 2G7 C#m7 F#7 Dm7 G7 2CM7 Cm7 F7 2BbM7 Bbm7 Eb7 2AbM7 Dm7 G7b9 CM7 Am7 Dm7 G7"
-  },
-  "aint_misbehavin": {
-    "composer": ["Thomas Waller", "Harry Brooks", "Andy Razaf"],
-    "keysig": "3f",
-    "timesig": "4/4",
-    "pickup": 0,
-    "bars": "[8] * 32",
-    "notes": [-1,1,1,1,1,3,-1,1,1,1,4,-1,1,1,1,1,2,1,1,1,1,2,1,2,-1,1,1,1,1,3,-1,1,1,1,1,2,1,12,-4,-1,1,1,1,1,3,-1,1,1,1,4,-1,1,1,1,1,2,1,1,1,1,2,1,2,-1,1,1,1,1,3,-1,1,1,1,1,2,1,12,-4,-2,1,1,1,3,-2,1,1,1,3,-2,1,1,1,3,-2,1,1,1,3,-2,2,2,2,2,2,2,2,4,4,4,4,-1,1,1,1,1,3,-1,1,1,1,4,-1,1,1,1,1,2,1,1,1,1,2,1,2,-1,1,1,1,1,3,-1,1,1,1,1,2,1,12,-4],
-    "chords": "[ Eb Eo7 Fm7 F#o7 Eb/G G+7 Ab(6) Db9 Eb C7b9 Fm7 Bb7 [ G7 C7 F7 Bb7 ] [ Eb(6) Db9 Eb(6) G+7 ] ] 2Cm 2Ab7/C 2F7/C 2C7 Bb Bo7 Cm7 F7 Bb7 C7 F7 Bb7 Eb Eo7 Fm7 F#o7 Eb/G G+7 Ab(6) Db9 Eb C7b9 Fm7 Bb7 2Eb(6) Fm7 Bb7"
-  },
-  "agua_de_beber": {
-    "composer": ["Antonio Carlos Jobim", "Norman Gimbel", "Vinicius De Moraes"],
-    "keysig": None,
-    "timesig": "4/4",
-    "pickup": 0,
-    "bars": "[8] * 48",
-    "notes": [1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-4,1,1,6,1,1,6,-8,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-4,1,1,6,1,1,6,-2,1,2,2,4,4,6,2,2,7,-2,1,2,2,6,2,6,2,9,-2,1,2,2,4,4,6,2,2,7,-7,1,1,2,2,1,2,3,2,2,2,1,6,-2,1,1,1,1,12,1,1,1,1,3,1,1,1,-6,1,1,1,1,12,1,1,1,1,3,1,1,1,-12,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-3,1,0.5,0.5,1,1,1,2,2,1,1,1,1,-4,1,1,6,1,1,6,-8],
-    "chords": "[ 2Am7 B7#9 E+7 2Am7 B7#9 E+7 2Am7 2FM7 2Am7 [ 2Em7b5 ] [ 2Am7 ] ] 2B7b9 2E+7 4Am7 2Dm7 2G7 4CM7 B7 Bb7b5 Am7 Abo7 C9/G C7#9/G 2B7#9/F# 2B7b9 2E9sus4 4Am7 2D7 2Dm7 4Am7 2D7 2Dm7 2Am7 2Em7b5 2Am7 B7#9 E+7 2Am7 B7#9 E+7 2Am7 B7#9 E+7 2Am7 2FM7 4Am7"
-  }
-}
-
-
-#with open('music/pieces.json') as f:
-#    piece_data = json.load(f)
+with open('music/pieces.json') as f:
+    piece_data = json.load(f)
 for title, details in piece_data.items():
     piece = Piece(
         title,
@@ -346,8 +311,8 @@ for title, details in piece_data.items():
         details['timesig'],
         details['pickup']*30,
         eval(details['bars']),
-        details['notes'],
-        details['chords']
+        details['chords'],
+        details['notes']
     )
     piece.get_bars()
     piece.create_midi_melody('music/' + piece.name + '_pitches.MID', piece.name + '.MID')
