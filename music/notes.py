@@ -1,5 +1,3 @@
-# -*- coding: UTF-8 -*-
-
 import pretty_midi as pm
 import string
 import json
@@ -53,7 +51,14 @@ class Note:
     def __init__(self, pitch=None, duration=None):
         self.pitch = pitch
         self.duration = duration
+        self.name = None
+        self.octave = None
         self.time_remaining = duration
+
+    def get_note_name_and_octave(self):
+        name_octave = pm.note_number_to_name(self.pitch)
+        self.name = name_octave.translate(str.maketrans('', '', string.digits))
+        self.octave = int(name_octave.translate(str.maketrans('', '', self.name)))
 
 
 class Chord:
@@ -196,8 +201,10 @@ class Piece:
             all the notes in the chord of interest, prior to alteration.
         :return: Chordset after alteration has been applied.
         """
-        type = alteration.translate(None, string.digits)  # alteration type: 'b', '#', '()', or 'sus'
-        note = int(alteration.translate(None, type))  # name(=number) of note affected by alteration
+        type = alteration.translate(str.maketrans('', '', string.digits))
+        note = int(alteration.translate(str.maketrans('', '', type)))
+        #type = alteration.translate(None, string.digits)  # alteration type: 'b', '#', '()', or 'sus'
+        #note = int(alteration.translate(None, type))  # name(=number) of note affected by alteration
         index = position_map[note]  # position of affected note in the chromatic scale, zero-indexed
         if type in ['b', '#']:
             chordset.discard(index)
@@ -219,8 +226,8 @@ class Piece:
         alts = chord_match.group(4)
         bass = chord_match.group(5) or root
 
-        chord_flavour = kind.translate(None, string.digits)
-        extension = kind.translate(None, chord_flavour)
+        chord_flavour = kind.translate(str.maketrans('', '', string.digits))
+        extension = kind.translate(str.maketrans('', '', chord_flavour))
         if extension in ('9', '11', '13'):
             kind = chord_flavour + str(7)
             exts = set(range(9, int(extension) + 1, 2))
@@ -239,7 +246,7 @@ class Piece:
 
     def get_chords(self):
         chord_regex = re.compile(r'''
-            (\d*)
+            (\d*(?:\.\d+)?)
             ([A-G][b#]?)
             ([m\+oø]?(?:M?(?:7|9|11|13))?)?
             ((?:\((?:\d+)\)|[b#]\d+|sus\d+)*)
@@ -301,9 +308,16 @@ class Piece:
                 is_barline = False
 
 
+    def get_timestep_vectors(self):
+        for ts in self.timesteps:
+            pass
+
 with open('music/pieces.json') as f:
     piece_data = json.load(f)
 for title, details in piece_data.items():
+    if not details["chords"] or title == "angel_eyes":
+        continue
+    print(title)
     piece = Piece(
         title,
         details['composer'],
@@ -315,7 +329,7 @@ for title, details in piece_data.items():
         details['notes']
     )
     piece.get_bars()
-    piece.create_midi_melody('music/' + piece.name + '_pitches.MID', piece.name + '.MID')
+    piece.create_midi_melody('PitchMIDI/' + piece.name + '_pitches.MID', piece.name + '.MID')
     piece.get_melody(piece.name + '.MID')
     piece.get_chords()
     piece.get_timesteps()
