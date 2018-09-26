@@ -139,7 +139,7 @@ class Piece:
         self.chords = None
         self.melody = []
         self.timesteps = []
-        self.timestep_vector = None
+        self.timestep_vectors = []
 
 
     def get_bars(self):
@@ -366,8 +366,10 @@ class Piece:
             chord_vec = [0 if i not in timestep.chord else 1 for i in range(12)]
             # Between 1 triplet semiquaver and 24 triplet semiquavers (i.e. 1 bar).
             duration_vec = [0 if (i + 1) * 10 != timestep.duration else 1 for i in range(24)]
-            self.timestep_vector = (note_name_vec + note_octave_vec + same_note_vec
-                                    + root_vec + bass_vec + chord_vec + duration_vec)
+            timestep_vector = (note_name_vec + note_octave_vec + same_note_vec
+                               + root_vec + bass_vec + chord_vec + duration_vec)
+            self.timestep_vectors.append(timestep_vector)
+
 
 with open('music/pieces.json') as f:
     piece_data = json.load(f)
