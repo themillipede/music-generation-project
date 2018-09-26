@@ -4,6 +4,14 @@ import json
 import re
 
 
+# Every jazz chord symbol contains, following the letter specifying the root note, exactly one of the keys below.
+# These define the core "quality" of the chord, where the empty string corresponds to the simple major triad.
+# Each one comprises a triad chord and (optionally) a seventh note.
+# There are four triads that can be constructed by stacking combinations of major and minor thirds from the root:
+# major (= maj + min), minor (= min + maj), augmented (= maj + maj), and diminished (= min + min).
+# There are three possible seventh notes, defined by their interval from the root: major, minor, and diminished
+# (there is no augmented seventh, as this would be equal to the root, with an interval of a perfect octave).
+# The dictionary below maps each "chord quality" to its constituent triad and seventh note (where one exists).
 chord_quality = {
     '': ('maj', None),
     'm': ('min', None),
@@ -19,6 +27,8 @@ chord_quality = {
     'ø7': ('dim', 'min')
 }
 
+# Map each of the four different types of triad to a set containing the relative positions of its constituent
+# notes in the 12-note chromatic scale (zero-indexed).
 triad_notes = {
     'maj': {0, 4, 7},
     'min': {0, 3, 7},
@@ -26,6 +36,7 @@ triad_notes = {
     'dim': {0, 3, 6}
 }
 
+# Map each type of seventh note to its relative position in the 12-note chromatic scale.
 seven_notes = {
     'maj': 11,
     'min': 10,
@@ -33,7 +44,7 @@ seven_notes = {
     None: 0
 }
 
-position_map = {
+note_num_idx = {
     1: 0,
     2: 2,
     3: 4,
@@ -44,6 +55,21 @@ position_map = {
     9: 2,
     11: 5,
     13: 9
+}
+
+note_name_idx = {
+    'C': 0,
+    'C#': 1,
+    'D': 2,
+    'D#': 3,
+    'E': 4,
+    'F': 5,
+    'F#': 6,
+    'G': 7,
+    'G#': 8,
+    'A': 9,
+    'A#': 10,
+    'B': 11
 }
 
 
@@ -83,13 +109,19 @@ class Timestep:
     """
     Every unique note/chord/bar combination gets its own timestep.
     """
-    def __init__(self, note=None, chord=None, bar=None, duration=None, is_tied=False, is_barline=False):
-        self.note = note
+    def __init__(self, note_name=None, note_octave=None, note_pitch=None, root=None, bass=None, chord=None,
+                 bar=None, duration=None, is_tied=False, is_barline=False, same_note=False):
+        self.note_name = note_name,
+        self.note_octave = note_octave,
+        self.note_pitch = note_pitch,
+        self.root = root,
+        self.bass = bass,
         self.chord = chord
         self.bar = bar
         self.duration = duration
         self.is_tied = is_tied
         self.is_barline = is_barline
+        self.same_note = same_note
 
 
 class Piece:
@@ -107,6 +139,7 @@ class Piece:
         self.chords = None
         self.melody = []
         self.timesteps = []
+        self.timestep_vector = None
 
 
     def get_bars(self):
@@ -114,6 +147,11 @@ class Piece:
 
 
     def get_pitch_sequence(self, pitch_data):
+        '''
+        :param pitch_data: MIDI file containing a sequence of notes that matches the number of notes in the relevant
+            piece, and the pitches of those notes (in order), but not necessarily with the correct note durations.
+        :return: List containing, for each note of the piece (in order), just the number indicating its pitch.
+        '''
         song = pm.PrettyMIDI(pitch_data)
         inst = song.instruments[0].notes
         pitch_list = [note.pitch for note in inst]
@@ -151,7 +189,9 @@ class Piece:
                 rest_duration = note.start - latest_time
                 self.melody.append(Note(duration=rest_duration))
             note_duration = note.end - note.start
-            self.melody.append(Note(note.pitch, note_duration))
+            next_note = Note(note.pitch, note_duration)
+            next_note.get_note_name_and_octave()
+            self.melody.append(next_note)
             elapsed_time += note.end - latest_time
             latest_time = note.end
 
@@ -164,10 +204,9 @@ class Piece:
 
     def get_chord_sequence(self):
         """
-        :param chord_data: String containing a space-separated sequence of chord symbols.
-        Sections within square parentheses that are not contained within outer square parentheses
-        represent repeated sections, and any inner sections bounded by square parentheses signify
-        first, second, etc. time bars, in order of appearance.
+        :param chord_data: String containing a space-separated sequence of chord symbols and square parentheses.
+        Sections within parentheses that are not nested within outer parentheses represent repeated sections,
+        while any nested sections signify first, second, time bars, in order of appearance.
         :return: List of all chords, in order of appearance.
         """
         chords = []
@@ -201,11 +240,9 @@ class Piece:
             all the notes in the chord of interest, prior to alteration.
         :return: Chordset after alteration has been applied.
         """
-        type = alteration.translate(str.maketrans('', '', string.digits))
-        note = int(alteration.translate(str.maketrans('', '', type)))
-        #type = alteration.translate(None, string.digits)  # alteration type: 'b', '#', '()', or 'sus'
-        #note = int(alteration.translate(None, type))  # name(=number) of note affected by alteration
-        index = position_map[note]  # position of affected note in the chromatic scale, zero-indexed
+        type = alteration.translate(str.maketrans('', '', string.digits))  # 'b', '#', '()', or 'sus'
+        note = int(alteration.translate(str.maketrans('', '', type)))  # number of note affected
+        index = note_num_idx[note]  # position of affected note in the chromatic scale, zero-indexed
         if type in ['b', '#']:
             chordset.discard(index)
             if type == 'b':
@@ -272,12 +309,17 @@ class Piece:
             )
             if timestep_duration > 0:
                 this_timestep = Timestep(
-                    note=this_note.pitch,
+                    note_name=this_note.name,
+                    note_octave=this_note.octave,
+                    note_pitch=this_note.pitch,
+                    root=this_chord.root,
+                    bass=this_chord.bass,
                     chord=this_chord.chordset,
                     bar=this_bar.number,
                     duration=timestep_duration,
                     is_tied=False,
-                    is_barline=is_barline
+                    is_barline=is_barline,
+                    same_note=same_note
                 )
                 self.timesteps.append(this_timestep)
             elif self.pickup_duration:
@@ -289,8 +331,10 @@ class Piece:
                 n += 1
                 if n < len(self.melody):
                     this_note = self.melody[n]
+                same_note = False
             else:
                 this_timestep.is_tied = True
+                same_note = True
 
             this_chord.time_remaining -= timestep_duration
             if this_chord.time_remaining == 0:
@@ -309,15 +353,27 @@ class Piece:
 
 
     def get_timestep_vectors(self):
-        for ts in self.timesteps:
-            pass
+        prev_note = -1
+        for timestep in self.timesteps:
+            note_name_vec = [0 if i != note_name_idx[timestep.note_name] else 1 for i in range(12)]
+            note_octave_vec = [0 if i != timestep.note_octave else 1 for i in range(3)]
+            # If 1 then note_name_vec and note_octave_vec should both be 0.
+            curr_note = timestep.note_pitch
+            same_note_vec = [0] if curr_note != prev_note else [1]
+            prev_note = curr_note
+            root_vec = [0 if i != note_name_idx[timestep.root] else 1 for i in range(12)]
+            bass_vec = [0 if i != note_name_idx[timestep.bass] else 1 for i in range(12)]
+            chord_vec = [0 if i not in timestep.chord else 1 for i in range(12)]
+            # Between 1 triplet semiquaver and 24 triplet semiquavers (i.e. 1 bar).
+            duration_vec = [0 if (i + 1) * 10 != timestep.duration else 1 for i in range(24)]
+            self.timestep_vector = (note_name_vec + note_octave_vec + same_note_vec
+                                    + root_vec + bass_vec + chord_vec + duration_vec)
 
 with open('music/pieces.json') as f:
     piece_data = json.load(f)
 for title, details in piece_data.items():
-    if not details["chords"] or title == "angel_eyes":
+    if not details["chords"]:
         continue
-    print(title)
     piece = Piece(
         title,
         details['composer'],
