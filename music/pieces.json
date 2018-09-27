@@ -214,5 +214,761 @@
     "bars": "[8] * 24",
     "notes": [1,1,1,1,-2,1,1,1,1,-1,1,-1,1,1,1,1,1,1,1,1,1,1,1,-1,2,-2,2,1,3,1,-1,1,6,1,1,1,1,2,-1,1,2,-1,1,2,3,1,1,1,1,1,1,1,2,-1,1,2,-1,2,1,1,1,-3,1,3,1,1,1,1,1,1,3,1,1,1,1,-2,1,1,1,1,-1,1,-1,1,1,1,1,1,1,1,1,1,1,1,-1,2,-2,2,1,3,1,-1,1,6,1,1,1,1,2,-1,1,2,-1,1,2,3,1,1,1,1,1,1,1,2,-1,1,2,-1,2,1,1,1,-3,1,3,1,1,1,1,1,1,3],
     "chords": "[ 2F Gm7 C7 F Gm7 Cm7 F7#5 2Bb7 Bbm7 Eb7 F Gm7 Am7 D7 3Gm7 C7 F D7b9 [ Gm7 C7 ] [ Gm7 C7 ] ]"
+  },
+  "bark_for_barksdale": {
+    "composer": ["Gerry Mulligan"],
+    "keysig": "1f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "[8] * 32",
+    "notes": [1,1,-1,1,1,-1,1,9,1,1,-1,1,1,-1,1,9,1,1,-1,1,1,-1,2,3,5,1,1,-1,1,1,-1,9,1,1,-1,1,1,-1,1,9,1,1,-1,1,1,-1,1,9,1,1,-1,1,1,-1,2,3,5,1,1,-1,1,1,-1,9,1,1,-1,1,1,-1,1,9,1,1,-1,1,1,-1,9,1,1,-1,1,1,-1,2,3,5,1,1,-1,1,1,-1,4,5,1,1,-1,1,1,-1,1,9,1,1,-1,1,1,-1,1,9,1,1,-1,1,1,-1,2,3,5,1,1,-1,1,1,-1,1,9],
+    "chords": "[ 4F 2Gm7 2C7 2F 2Bb7 G7 C7 2F ] 4Bb 2Cm7 2F7 2Bb 2Eb7 C7 F7 Bb C7 4F 2Gm7 2C7 2F 2Bb7 G7 C7 2F"
+  },
+  "beauty_and_the_beast": {
+    "composer": ["Wayne Shorter"],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "bernies_tune": {
+    "composer": ["Bernie Miller"],
+    "keysig": "1f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "[8] * 32",
+    "notes": [-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,2,-2,1,1,-1,1,3,5,2,2,1,1,-1,1,6,-2,2,-2,1,1,-1,1,3,5,2,2,5,1,1,1,4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4],
+    "chords": "[ 4Dm7 4Bb7b5 2Eø7 2A7 2Dm7 [ Eø7 A+7 ] [ 2Dm7 ] Bb(6) Gm7 Cm7 F7 Bb(6) Gm7 Cm7 F7 Bb(6) Gm7 Cm7 F7 2Bb(6) Eø7 A+7 4Dm7 4Bb7b5 2Eø7 2A7 2Dm7 Eø7 A+7 ]"
+  },
+  "bessies_blues": {
+    "composer": ["John Coltrane"],
+    "keysig": "3f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "[8] * 24",
+    "notes": [2,1,3,-1,3,1,4,1,1,1,2,2,1,2,1,1,5,-1,2,1,1,2,4,2,2,1,1,1,2,2,1,2,1,1,1,-2,1,3,1,1,1,1,1,1,1,1,1,1,2,1,5,-7,1,1,1,1,1,2,1,3,-1,3,1,4,1,1,1,2,2,1,2,1,1,5,-1,2,1,1,2,4,2,2,1,1,1,2,2,1,2,1,1,1,-2,1,3,1,1,1,1,1,1,1,1,1,1,2,1,5,-12],
+    "chords": "[ 2Eb7 2Ab7 4Eb7 4Ab7 4Eb7 2Bb7 2Ab7 2Eb7 [ 2Eb7 ] [ 2Eb7 ] ]"
+  },
+  "between_the_devil_and_the_deep_blue_sea": {
+    "composer": ["Harold Arlen", "Ted Koehler"],
+    "keysig": "1f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "[8] * 32",
+    "notes": [-2,4,2,4,4,-2,1,1,2,2,2,6,-2,2,1,3,2,1,4,1,1,1,1,1,2,1,5,-4,-2,4,2,4,4,-2,1,1,2,2,2,6,-2,2,1,3,2,1,4,1,1,1,1,1,2,1,5,-4,-3,1,1,1,1,1,1,2,5,2,2,1,1,1,1,2,1,5,-3,1,1,1,1,1,1,2,4,1,1,1,1,1,2,2,4,-4,-2,4,2,4,4,-2,1,1,2,2,2,6,-2,2,1,3,2,1,4,1,1,1,1,1,2,1,5,-4],
+    "chords": "[2FM7 Gm7 C7 2FM7 Gm7 C7 Cm7 F7 BbM7 Eb7 Gm7 C7 [ F(6) C7 ] [ F(6) E7 ] 2AM7 Bm7 E7 AM7 Ao7 Bm7 E7 2CM7 Dm7 G7 2Ab7 G7 C7 2FM7 Gm7 C7 2FM7 Gm7 C7 Cm7 F7 BbM7 Eb7 Gm7 C7 F(6) C7 ]"
+  },
+  "beyond_the_blue_horizon": {
+    "composer": ["Richard A. Whiting", "W. Franke Harling", "Leo Robin"],
+    "keysig": "2f",
+    "timesig": "4/4",
+    "pickup": 2,
+    "bars": "[8] * 32",
+    "notes": [2,6,2,6,2,8,8,6,2,2,2,2,16,2,6,2,6,2,8,8,4,4,2,6,8,6,2,6,2,6,2,8,8,-2,2,2,2,2,2,2,16,2,6,2,6,2,4,4,4,4,8,8,12,-4],
+    "chords": "4BbM7 4Ab7b5 4BbM7 4G7 2Cm7 2Cø7 2BbM7 2G7 4C7 2F7 2F+7 4BbM7 4Ab7b5 2BbM7 2G#o7 4G7  2Cm7 2Cø7 3BbM7 Gm7 2Cm7 2F7 2Bb(6) Cm7 F7"
+  },
+  "big_nick": {
+    "composer": ["John Coltrane"],
+    "keysig": "1s",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "[8] * 16",
+    "notes": [-1,1,1,1,1,1,1,1,2,-1,1,1,1,2,-1,1,1,1,3,1,1,1,2,-1,1,0.67,0.67,0.67,2,-1,1,2,-1,1,0.5,0.5,0.5,0.5,5,1,2,-1,1,2,-1,1,3,1,0.5,0.5,0.5,0.5,2,-1,1,1,1,1,1,1,1,2,-1,1,1,1,2,-1,1,1,1,3,1,1,1,2,-1,1,0.67,0.67,0.67,2,-1,1,2,-1,1,0.5,0.5,0.5,0.5,5,1,2,-1,1,2,-1,1,3,1,0.5,0.5,0.5,0.5,1,1],
+    "chords": "[ GM7 Em7 Am7 D7 GM7 Em7 Am7 D7 G G7/B C C#o7 G/D E7 [ Am7 D7 ] [ Am7 D7 ] ]"
+  },
+  "black_nile": {
+    "composer": ["Wayne Shorter"],
+    "keysig": "1f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "black_orpheus": {
+    "composer": ["Luiz Bonfa"],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 2,
+    "bars": "[8] * 32",
+    "notes": [2,6,1,1,6,1,1,14,2,6,1,1,6,1,1,12,-1,1,1,1,3,1,8,-1,1,1,1,3,1,8,-1,1,1,1,3,1,8,-1,1,1,1,14,2,6,1,1,6,1,1,14,2,6,1,1,6,1,1,14,2,6,1,1,8,-2,2,2,1,1,6,2,8,-4,2,1,1,14,-2],
+    "chords": "2Am Bø7 E7b9 2Am Bø7 E7b9 2Am Dm7 G7 2CM7 2C#o7 2Dm7 2G7 2C(6) 2FM7 2Bø7 2E7b9 2Am Bø7 E7b9 2Am Bø7 E7b9 2Am Bø7 E7b9 2Eø7 2A7b9 6Dm Dm7/C Bø7 E7b9 Am Am7/G 2FM7 2Bø7 2E7b9 2Am Bø7 E7b9"
+  },
+  "blackberry_winter": {
+    "composer": ["Alec Wilder", "Loonis McGlohon"],
+    "keysig": "1f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "[8] * 32",
+    "notes": [2.67,0.67,0.67,1,3,-2,0.5,0.5,0.5,0.5,1,3.5,0.5,0.5,0.5,0.5,0.5,3,1,1,1,2,1,1,1,1,1,1,2.67,0.67,0.67,1,1,-1,1,0.5,0.5,0.5,0.5,3,1,1,1,12,-2,2.67,0.67,0.67,1,3,-2,0.5,0.5,0.5,0.5,1,3.5,0.5,0.5,0.5,0.5,0.5,3,1,1,1,2,1,1,1,1,1,1,2.67,0.67,0.67,1,1,-1,1,0.5,0.5,0.5,0.5,3,1,1,1,12,-2,-1,1,1,2,1,1,1,1,1,4,0.5,0.5,0.5,0.5,3,1,3,1,8,-0.67,0.67,0.67,0.5,0.5,0.5,0.5,4,-0.67,0.67,0.67,0.5,0.5,0.5,0.5,3,0.5,0.5,2.67,0.67,0.67,1,2,1,1,1,1,1,3,1,2.67,0.67,0.67,1,2,1,1,1,1,1,3,1,2.67,0.67,0.67,1,3,-2,0.5,0.5,0.5,0.5,1,2.5,0.5,0.5,0.5,0.5,0.5,3,1,1,1,2,1,1,1,1,1,1,2.67,0.67,0.67,1,1,-1,1,3,1,3,1,8,-8],
+    "chords": "[ FM7 Am7 Dm7 0.5Gm7 0.5C7 FM7 Gm7 Am7 BbM7 Am7 Dm7 Gm7 C7sus4 [ F(6) Dm7 Gm7 C7 ] [ F(6) BbM7 2F(6) ] ] Cm7 F7 Dm7 Gm7 Cm7 F7 2BbM7 Am AmM7 Am7 Am(6) Bø7 E7b9 0.5Am7 0.5D+7 0.5Gm7 0.5C7 FM7 Am7 Dm7 0.5Gm7 0.5C7 FM7 Gm7 Am7 BbM7 Am7 Dm7 Gm7 C7 2F(6) Gm7 C7"
+  },
+  "blue_bossa": {
+    "composer": ["Kenny Dorham"],
+    "keysig": "3f",
+    "timesig": "4/4",
+    "pickup": 2,
+    "bars": "[8] * 32",
+    "notes": [2,3,1,1,1,-1,6,1,-1,6,1,-1,7,-2,3,1,1,1,-1,6,1,-1,6,1,-1,7,-2,3,1,1,1,-1,6,1,-1,4,1,3,1,6,-2,2,1,4,1,2,1,4,1,12,-2,2,2,3,1,1,1,-1,6,1,-1,6,1,-1,7,-2,3,1,1,1,-1,6,1,-1,6,1,-1,7,-2,3,1,1,1,-1,6,1,-1,4,1,3,1,6,-2,2,1,4,1,2,1,4,1,12,-4],
+    "chords": "[ 4Cm 2Fm7 2Bb7 2Dø7 2G+7#9 4Cm 2Ebm7 2Ab7 4DbM7 2Dø7 2G+7#9 2Cm Dø7 G+7 ]"
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "": {
+    "composer": [""],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
   }
 }
