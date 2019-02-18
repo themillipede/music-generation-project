@@ -17,7 +17,7 @@ symbol used in this project has the same standard format, comprising the followi
 3. Alterations (if applicable):
    An additional string of characters may be appended, to define any alterations to the core chord, and
    there is no limit to how many alterations may be included in this string. Any sharpened or flattened
-   notes are represented by the note letter prepended with '#' or 'b' as appropriate; new additions are
+   notes are represented by the note number prepended with '#' or 'b' as appropriate; new additions are
    represented by the note position written within parentheses; sus chords are written 'sus4' or 'sus2'.
 
 4. Bass note (if applicable):
