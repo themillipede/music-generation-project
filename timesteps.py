@@ -86,4 +86,9 @@ class Timestep:
 class TempObject:
     def __init__(self):
         self.duration = 0
+        self.root = None,
+        self.bass = None,
+        self.chord_type = None,
+        self.chord_full = None,
+        self.bar_number = -1,
         self.time_remaining = self.duration
