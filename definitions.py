@@ -114,3 +114,6 @@ note_name_idx = {
     'Cb': 11,
     'B#': 0
 }
+
+QUAVER_DURATION = 30
+MINIM_DURATION = 120
