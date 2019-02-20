@@ -1,46 +1,40 @@
 import re
 
-from .definitions import chord_quality, triad_notes, seventh_notes, note_num_idx
-
-MINIM_DURATION = 120
+from .definitions import chord_quality, triad_notes, seventh_notes, note_num_idx, MINIM_DURATION
 
 
-class Regex:
-    def __init__(self):
-        self.compile_chord_regex()
-        self.compile_alts_regex()
+def compile_chord_regex():
+    num_minims_regex = '(\d*(?:\.\d+)?)'
+    root_regex = '([A-G][b#]?)'
+    type_regex = '([m\+oø]?(?:M?(?:7|9|11|13))?)?'
+    alts_regex = '((?:[b#]\d+|(?:sus|add)\d+)*)'
+    bass_regex = '(?:/([A-G][b#]?))?'
+    chord_regex = (
+        num_minims_regex +
+        root_regex +
+        type_regex +
+        alts_regex +
+        bass_regex
+    )
+    return re.compile(chord_regex)
 
-    def compile_chord_regex(self):
-        relative_duration_regex = '(\d*(?:\.\d+)?)'
-        root_regex = '([A-G][b#]?)'
-        type_regex = '([m\+oø]?(?:M?(?:7|9|11|13))?)?'
-        alts_regex = '((?:[b#]\d+|(?:sus|add)\d+)*)'
-        bass_regex = '(?:/([A-G][b#]?))?'
-        chord_regex = (
-            relative_duration_regex +
-            root_regex +
-            type_regex +
-            alts_regex +
-            bass_regex
-        )
-        self.compiled_chord_regex = re.compile(chord_regex)
 
-    def compile_alts_regex(self):
-        alts_regex = '([b#]\d+|(?:add|sus)\d+)'
-        self.compiled_alts_regex = re.compile(alts_regex)
+def compile_alts_regex():
+    alts_regex = '[b#]\d+|(?:add|sus)\d+'
+    return re.compile(alts_regex)
+
+
+compiled_chord_regex = compile_chord_regex()
+compiled_alts_regex = compile_alts_regex()
 
 
 class ChordProgression:
     def __init__(self, chord_string):
-        self.get_chord_sequence(chord_string)
-
-    def get_chord_sequence(self, chord_string):
         """
-        :param chord_list: String containing a space-separated sequence of chord symbols and
+        :param chord_string: String containing a space-separated series of chord symbols and
             square parentheses. Sections within parentheses that are not nested within outer
             parentheses represent repeated sections, while any nested sections signify first
             and second time bars, in order of appearance (this will not work for > 1 repeat).
-        :return: List of all chords, in order.
         """
         chords = []
         l = chord_string.split(' ')
@@ -72,10 +66,10 @@ class Chord:
         self._construct_full_chordset()
         self.time_remaining = self.duration
 
-    def _extract_chord_components(self, chord_symbol, compiled_chord_regex):
+    def _extract_chord_components(self, chord_symbol):
         chord_match = compiled_chord_regex.match(chord_symbol)
-        relative_duration = float(chord_match.group(1) or 1)
-        self.duration = round(relative_duration * MINIM_DURATION)
+        num_minims = float(chord_match.group(1) or 1)
+        self.duration = round(num_minims * MINIM_DURATION)
         self.root = chord_match.group(2)
         self.type = chord_match.group(3)
         self.alts = chord_match.group(4)
@@ -112,7 +106,7 @@ class Chord:
         seventh_index = seventh_notes[seventh_type]
         self.type_chordset = (triad_indices | {seventh_index})
 
-    def _construct_full_chordset(self, compiled_alts_regex):
+    def _construct_full_chordset(self):
         alts_list = re.findall(compiled_alts_regex, self.alts)
         self.full_chordset = self.type_chordset
         for alt in alts_list:
