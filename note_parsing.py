@@ -1,6 +1,6 @@
 import pretty_midi as pm
 
-from .definitions import QUAVER_DURATION
+from definitions import QUAVER_DURATION
 
 
 class Melody:
@@ -33,3 +33,8 @@ class Note:
         name_octave = pm.note_number_to_name(self.pitch)
         self.name = name_octave.rstrip('0123456789')
         self.octave = int(name_octave.lstrip(self.name))
+
+
+class EmptyNote(Note):
+    def __init__(self):
+        self.time_remaining = 0

@@ -1,6 +1,6 @@
 import re
 
-from .definitions import chord_quality, triad_notes, seventh_notes, note_num_idx, MINIM_DURATION
+from definitions import chord_quality, triad_notes, seventh_notes, note_num_idx, MINIM_DURATION
 
 
 def compile_chord_regex():
@@ -87,7 +87,7 @@ class Chord:
             ('b', '#', 'add', or 'sus'), and the position of the affected note.
         """
         alt_type = alt.rstrip('0123456789')
-        alt_note = alt.lstrip(alt_type)
+        alt_note = int(alt.lstrip(alt_type))
         alt_idx = note_num_idx[alt_note]
         if alt_type in ('b', '#'):
             self.full_chordset.discard(alt_idx)
@@ -101,9 +101,9 @@ class Chord:
                 self.full_chordset -= {3, 4}
 
     def _construct_type_chordset(self):
-        triad_type, seventh_type = chord_quality[self.type]
-        triad_indices = triad_notes[triad_type]
-        seventh_index = seventh_notes[seventh_type]
+        triad, seventh = chord_quality[self.type]
+        triad_indices = triad_notes[triad]
+        seventh_index = seventh_notes[seventh] if seventh else 0
         self.type_chordset = (triad_indices | {seventh_index})
 
     def _construct_full_chordset(self):
@@ -111,3 +111,12 @@ class Chord:
         self.full_chordset = self.type_chordset
         for alt in alts_list:
             self._make_chord_alteration(alt)
+
+
+class EmptyChord(Chord):
+    def __init__(self):
+        self.root = None
+        self.bass = None
+        self.type_chordset = set()
+        self.full_chordset = set()
+        self.time_remaining = 0
