@@ -78,7 +78,7 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [4,1,2,5,1,2,5,10,-2,4,1,2,5,1,2,15,-2,4,1,2,5,1,2,3,2,1,2,9,2,2,1,2,9,2,2,1,2,9,4,1,2,5,1,2,5,10,-2,4,1,2,5,1,2,10,-1,2,2,2,2,2,2,2,2,1,2,1,2,4,5,-1,1,2,1,2,4,4,-2,2,2,2,12,-4],
-    "chords": "2CM7 2C6 2D7 Am7 D7 2G7 Dm7 G7 Em7 A7 Dm7 G7 2CM7 2C6 F#m7 B7 2E7 Am7 Aø7/Eb 2D7 Dm7 Dø7/Ab 2G7 2CM7 2C6 2D7 Am7 D7 2G7 Dm7 G7 E7 E7#5 2E7 2FM7 2F#o7 CM7 B7#5 Eø7/Bb A7 Am7 D7 Dm7 G7 C6 Am7 Dm7 G7"
+    "chords": "2CM7 2Cadd6 2D7 Am7 D7 2G7 Dm7 G7 Em7 A7 Dm7 G7 2CM7 2Cadd6 F#m7 B7 2E7 Am7 Aø7/Eb 2D7 Dm7 Dø7/Ab 2G7 2CM7 2Cadd6 2D7 Am7 D7 2G7 Dm7 G7 E7 E7#5 2E7 2FM7 2F#o7 CM7 B7#5 Eø7/Bb A7 Am7 D7 Dm7 G7 Cadd6 Am7 Dm7 G7"
   },
   "all_or_nothing_at_all": {
     "composer": ["Arthur Altman", "Jack Lawrence"],
@@ -87,7 +87,7 @@
     "pickup": 0,
     "bars": "[8] * 64",
     "notes": [10,2,1.33,1.33,1.33,12,-4,4,4,4,1.33,1.33,1.33,3,1,8,-4,4,4,4,1.33,1.33,1.33,3,1,8,2,2,2,4,2,2,4,2,8,-8,10,2,1.33,1.33,1.33,12,-4,4,4,4,1.33,1.33,1.33,3,1,8,-4,3,1,3,1,3,1,1.33,1.33,1.33,3,1,8,2,2,2,4,2,2,4,2,8,-6,2,2,2,2,2,3,1,1.33,1.33,1.33,12,-2,2,3,1,3,1,4,1.33,1.33,1.33,12,-2,2,1.33,1.33,1.33,3,1,1.33,1.33,1.33,1.33,1.33,1.33,12,2,2,4,2,2,2,4,2,8,-2,2,2,2,8,1.33,1.33,1.33,1.33,1.33,1.33,12,-4,4,4,4,1.33,1.33,1.33,3,1,8,-4,4,4,3,1,1.33,1.33,1.33,8,8,10,2,1.33,1.33,1.33,12,-4],
-    "chords": "2Am 2Am(M7) 2Am7 2Am6 4Am7 4Bb7 Gm7 Gm7/F Eø7 A7b9 3Dm7 D#o7 2Dm7 2G7 2CM7 Bø7 E7b9 2Am 2Am(M7) 2Am7 2Am6 4Am7 4Bb7 Gm7 Gm7/F Eø7 A7b9 3Dm7 D#o7 2Dm7 2G7 2CM7 Bbm7 Eb7 AbM7 AbM7#5 Ab6 AbM7#5 2AbM7 Bbm7 Eb7 2AbM7 Db/Ab AbM7 4Eb7 2Bbm7 2Eb7 2Bbm7 Gø7 C7#5 2Fm7 2Db7 2C7 2E7b9 2Am 2Am(M7) 2Am7 2Am6 4Am7 4Bb7 Gm7 Gm7/F Eø7 A7b9 2Dm7 2E7b9 2Am7 2Fm6 2C6 Bø7 E7b9"
+    "chords": "2Am 2AmM7 2Am7 2Am6 4Am7 4Bb7 Gm7 Gm7/F Eø7 A7b9 3Dm7 D#o7 2Dm7 2G7 2CM7 Bø7 E7b9 2Am 2AmM7 2Am7 2Am6 4Am7 4Bb7 Gm7 Gm7/F Eø7 A7b9 3Dm7 D#o7 2Dm7 2G7 2CM7 Bbm7 Eb7 AbM7 AbM7#5 Ab6 AbM7#5 2AbM7 Bbm7 Eb7 2AbM7 Db/Ab AbM7 4Eb7 2Bbm7 2Eb7 2Bbm7 Gø7 C7#5 2Fm7 2Db7 2C7 2E7b9 2Am 2AmM7 2Am7 2Am6 4Am7 4Bb7 Gm7 Gm7/F Eø7 A7b9 2Dm7 2E7b9 2Am7 2Fm6 2Cadd6 Bø7 E7b9"
   },
   "all_the_things_you_are": {
     "composer": ["Jerome Kern", "Oscar Hammerstein II"],
@@ -159,7 +159,7 @@
     "pickup": 0,
     "bars": "[8] * 44",
     "notes": [-1,1,1,1,1,1,1,2,1,1,2,1,2,-1,1,1,1,1,1,1,2,1,1,2,1,2,-1,1,1,1,1,1,1,2,1,1,2,1,1,2,1,1,2,1,1,2,1,1,2,1,1,1,-1,1,1,1,1,1,1,2,1,1,1,1,2,2,1,1,1,1,1.67,0.67,0.67,8,-1,1,1,1,1,1,1,2,1,1,2,1,2,12,-1,1,1,1,16,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,1.33,8,-1,1,1,1,1,1,1,2,1,1,2,1,2,-1,1,1,1,1,1,1,2,1,1,2,1,2,-1,1,1,1,1,1,1,2,1,1,2,1,1,2,1,1,2,1,1,2,1,1,2,1,1,1,-1,1,1,1,1,1,1,2,1,1,2,1,1,2,1,1,2,1,2,1,1,-1,1,2,1,5,-1,1,1,1,1,1,-1,1,2,1,33],
-    "chords": "EbM7 Bb7b9 EbM7 Bb7b9 BM7 F#7b9 BM7 F#7b9 EbM7 Bb7b9 2EbM7 2Gm7/C 2C7#5b9 2Fm7 Dø7 G7b9 2Cm7 2F13#11 2Fm7 2EM7 EbM7 Bbm7 EbM7 Bbm7 EbM7 E7b5 EbM7 E7b5 4Abm7 4Ebm7 4Abm7 2F7 2Bb7b9 EbM7 Bb7b9 EbM7 Bb7b9 BM7 F#7b9 BM7 F#7b9 EbM7 Bb7b9 2EbM7 2Gm7/C 2C7#5b9 2Fm7 2Abm7 2Gm7 Gbm(M7) Gbm7 2Fm7 EM7 E7 EbM7 Bb7b9 EbM7 Bb7b9 EbM7 Bb7b9 EbM7 Bb7b9"
+    "chords": "EbM7 Bb7b9 EbM7 Bb7b9 BM7 F#7b9 BM7 F#7b9 EbM7 Bb7b9 2EbM7 2Gm7/C 2C7#5b9 2Fm7 Dø7 G7b9 2Cm7 2F13#11 2Fm7 2EM7 EbM7 Bbm7 EbM7 Bbm7 EbM7 E7b5 EbM7 E7b5 4Abm7 4Ebm7 4Abm7 2F7 2Bb7b9 EbM7 Bb7b9 EbM7 Bb7b9 BM7 F#7b9 BM7 F#7b9 EbM7 Bb7b9 2EbM7 2Gm7/C 2C7#5b9 2Fm7 2Abm7 2Gm7 GbmM7 Gbm7 2Fm7 EM7 E7 EbM7 Bb7b9 EbM7 Bb7b9 EbM7 Bb7b9 EbM7 Bb7b9"
   },
   "april_joy": {
     "composer": ["Pat Metheny"],
@@ -177,7 +177,7 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [2,2,2,2,2,2,4,3,1,2,2,2,2,4,1,2,1,2,2,2,2,4,2,2,2,2,8,2,2,2,2,2,2,4,3,1,2,2,2,2,4,1,2,1,2,2,2,2,4,2,2,2,2,4,3,1,2,2,2,2,6,2,2,2,2,2,6,2,2,2,2,2,8,1,1,1,2,1,2,2,1,5,2,2,2,2,2,2,4,3,1,2,2,2,2,4,1,2,1,2,2,2,2,4,2,2,2,2,4,-4],
-    "chords": "F F/A Bb6 Bo7 C C7 F6 Dm7 Gm7 C7 F6 Ab13 C/G G7 Gm7 C7 F Dm7 Gm7 G#o7 AM7 E7 A6 F#m7 Bm7 E7 A6 F#m7 Bm7 E7 A6 C7 Cm7 F7 Cm7 F7 2BbM7 Bbm7 Eb7 2AbM7 Gm7 C7 F6 Dm7 Gm7 C7 F F/A Bb6 Bo7 C C7 F6 Dm7 Gm7 C7 F6 D7 Gm7 C7 F6 0.5Gm7 0.5C7"
+    "chords": "F F/A Bb6 Bo7 C C7 Fadd6 Dm7 Gm7 C7 Fadd6 Ab13 C/G G7 Gm7 C7 F Dm7 Gm7 G#o7 AM7 E7 Aadd6 F#m7 Bm7 E7 Aadd6 F#m7 Bm7 E7 Aadd6 C7 Cm7 F7 Cm7 F7 2BbM7 Bbm7 Eb7 2AbM7 Gm7 C7 Fadd6 Dm7 Gm7 C7 F F/A Bb6 Bo7 C C7 Fadd6 Dm7 Gm7 C7 Fadd6 D7 Gm7 C7 Fadd6 0.5Gm7 0.5C7"
   },
   "arise_her_eyes": {
     "composer": ["Steve Swallow"],
@@ -204,7 +204,7 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [1,1,1,2,1,1,2,1,1,2,1,1,5,4,1,2,1,1,1,2,4,4,1,2,1,1,1,2,1,1,1,9,-4,1,1,1,2,1,1,2,1,1,2,1,1,5,4,1,2,1,1,1,2,4,4,1,2,1,1,1,2,1,1,1,9,-3,1,1,2,4,1,1,2,4,1,1,2,3,1,6,1,1,1,1,2,3,2,2,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,2,1,1,2,1,1,2,1,1,5,4,1,2,1,1,1,2,4,4,1,2,1,1,1,2,1,1,1,9,-4],
-    "chords": "[ 2FM7 2A7 4D7 2G7 2C7 [ 2F6 Gm7 C7 ] [ F6 Bb7 2F6 ] ] Cm7 F7 2BbM7 Bbm7 Eb7 2FM7 2Dm7 2G7 2Gm7 2C7 2FM7 2A7 4D7 2G7 2C7 2F6 Gm7 C7"
+    "chords": "[ 2FM7 2A7 4D7 2G7 2C7 [ 2Fadd6 Gm7 C7 ] [ Fadd6 Bb7 2Fadd6 ] ] Cm7 F7 2BbM7 Bbm7 Eb7 2FM7 2Dm7 2G7 2Gm7 2C7 2FM7 2A7 4D7 2G7 2C7 2Fadd6 Gm7 C7"
   },
   "au_private": {
     "composer": ["Charlie Parker"],
@@ -240,7 +240,7 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,2,-2,1,1,-1,1,3,5,2,2,1,1,-1,1,6,-2,2,-2,1,1,-1,1,3,5,2,2,5,1,1,1,4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4,-1,1,-1,1,2,-1,1,-1,1,2,1,1,1,1,7,5,-4],
-    "chords": "[ 4Dm7 4Bb7b5 2Eø7 2A7 2Dm7 [ Eø7 A+7 ] [ 2Dm7 ] Bb(6) Gm7 Cm7 F7 Bb(6) Gm7 Cm7 F7 Bb(6) Gm7 Cm7 F7 2Bb(6) Eø7 A+7 4Dm7 4Bb7b5 2Eø7 2A7 2Dm7 Eø7 A+7 ]"
+    "chords": "[ 4Dm7 4Bb7b5 2Eø7 2A7 2Dm7 [ Eø7 A+7 ] [ 2Dm7 ] Bbadd6 Gm7 Cm7 F7 Bbadd6 Gm7 Cm7 F7 Bbadd6 Gm7 Cm7 F7 2Bbadd6 Eø7 A+7 4Dm7 4Bb7b5 2Eø7 2A7 2Dm7 Eø7 A+7 ]"
   },
   "bessies_blues": {
     "composer": ["John Coltrane"],
@@ -258,7 +258,7 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [-2,4,2,4,4,-2,1,1,2,2,2,6,-2,2,1,3,2,1,4,1,1,1,1,1,2,1,5,-4,-2,4,2,4,4,-2,1,1,2,2,2,6,-2,2,1,3,2,1,4,1,1,1,1,1,2,1,5,-4,-3,1,1,1,1,1,1,2,5,2,2,1,1,1,1,2,1,5,-3,1,1,1,1,1,1,2,4,1,1,1,1,1,2,2,4,-4,-2,4,2,4,4,-2,1,1,2,2,2,6,-2,2,1,3,2,1,4,1,1,1,1,1,2,1,5,-4],
-    "chords": "[2FM7 Gm7 C7 2FM7 Gm7 C7 Cm7 F7 BbM7 Eb7 Gm7 C7 [ F(6) C7 ] [ F(6) E7 ] 2AM7 Bm7 E7 AM7 Ao7 Bm7 E7 2CM7 Dm7 G7 2Ab7 G7 C7 2FM7 Gm7 C7 2FM7 Gm7 C7 Cm7 F7 BbM7 Eb7 Gm7 C7 F(6) C7 ]"
+    "chords": "[2FM7 Gm7 C7 2FM7 Gm7 C7 Cm7 F7 BbM7 Eb7 Gm7 C7 [ Fadd6 C7 ] [ Fadd6 E7 ] 2AM7 Bm7 E7 AM7 Ao7 Bm7 E7 2CM7 Dm7 G7 2Ab7 G7 C7 2FM7 Gm7 C7 2FM7 Gm7 C7 Cm7 F7 BbM7 Eb7 Gm7 C7 Fadd6 C7 ]"
   },
   "beyond_the_blue_horizon": {
     "composer": ["Richard A. Whiting", "W. Franke Harling", "Leo Robin"],
@@ -267,7 +267,7 @@
     "pickup": 2,
     "bars": "[8] * 32",
     "notes": [2,6,2,6,2,8,8,6,2,2,2,2,16,2,6,2,6,2,8,8,4,4,2,6,8,6,2,6,2,6,2,8,8,-2,2,2,2,2,2,2,16,2,6,2,6,2,4,4,4,4,8,8,12,-4],
-    "chords": "4BbM7 4Ab7b5 4BbM7 4G7 2Cm7 2Cø7 2BbM7 2G7 4C7 2F7 2F+7 4BbM7 4Ab7b5 2BbM7 2G#o7 4G7  2Cm7 2Cø7 3BbM7 Gm7 2Cm7 2F7 2Bb(6) Cm7 F7"
+    "chords": "4BbM7 4Ab7b5 4BbM7 4G7 2Cm7 2Cø7 2BbM7 2G7 4C7 2F7 2F+7 4BbM7 4Ab7b5 2BbM7 2G#o7 4G7  2Cm7 2Cø7 3BbM7 Gm7 2Cm7 2F7 2Bbadd6 Cm7 F7"
   },
   "big_nick": {
     "composer": ["John Coltrane"],
@@ -294,7 +294,7 @@
     "pickup": 2,
     "bars": "[8] * 32",
     "notes": [2,6,1,1,6,1,1,14,2,6,1,1,6,1,1,12,-1,1,1,1,3,1,8,-1,1,1,1,3,1,8,-1,1,1,1,3,1,8,-1,1,1,1,14,2,6,1,1,6,1,1,14,2,6,1,1,6,1,1,14,2,6,1,1,8,-2,2,2,1,1,6,2,8,-4,2,1,1,14,-2],
-    "chords": "2Am Bø7 E7b9 2Am Bø7 E7b9 2Am Dm7 G7 2CM7 2C#o7 2Dm7 2G7 2C(6) 2FM7 2Bø7 2E7b9 2Am Bø7 E7b9 2Am Bø7 E7b9 2Am Bø7 E7b9 2Eø7 2A7b9 6Dm Dm7/C Bø7 E7b9 Am Am7/G 2FM7 2Bø7 2E7b9 2Am Bø7 E7b9"
+    "chords": "2Am Bø7 E7b9 2Am Bø7 E7b9 2Am Dm7 G7 2CM7 2C#o7 2Dm7 2G7 2Cadd6 2FM7 2Bø7 2E7b9 2Am Bø7 E7b9 2Am Bø7 E7b9 2Am Bø7 E7b9 2Eø7 2A7b9 6Dm Dm7/C Bø7 E7b9 Am Am7/G 2FM7 2Bø7 2E7b9 2Am Bø7 E7b9"
   },
   "blackberry_winter": {
     "composer": ["Alec Wilder", "Loonis McGlohon"],
@@ -303,7 +303,7 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [2.67,0.67,0.67,1,3,-2,0.5,0.5,0.5,0.5,1,3.5,0.5,0.5,0.5,0.5,0.5,3,1,1,1,2,1,1,1,1,1,1,2.67,0.67,0.67,1,1,-1,1,0.5,0.5,0.5,0.5,3,1,1,1,12,-2,2.67,0.67,0.67,1,3,-2,0.5,0.5,0.5,0.5,1,3.5,0.5,0.5,0.5,0.5,0.5,3,1,1,1,2,1,1,1,1,1,1,2.67,0.67,0.67,1,1,-1,1,0.5,0.5,0.5,0.5,3,1,1,1,12,-2,-1,1,1,2,1,1,1,1,1,4,0.5,0.5,0.5,0.5,3,1,3,1,8,-0.67,0.67,0.67,0.5,0.5,0.5,0.5,4,-0.67,0.67,0.67,0.5,0.5,0.5,0.5,3,0.5,0.5,2.67,0.67,0.67,1,2,1,1,1,1,1,3,1,2.67,0.67,0.67,1,2,1,1,1,1,1,3,1,2.67,0.67,0.67,1,3,-2,0.5,0.5,0.5,0.5,1,2.5,0.5,0.5,0.5,0.5,0.5,3,1,1,1,2,1,1,1,1,1,1,2.67,0.67,0.67,1,1,-1,1,3,1,3,1,8,-8],
-    "chords": "[ FM7 Am7 Dm7 0.5Gm7 0.5C7 FM7 Gm7 Am7 BbM7 Am7 Dm7 Gm7 C7sus4 [ F(6) Dm7 Gm7 C7 ] [ F(6) BbM7 2F(6) ] ] Cm7 F7 Dm7 Gm7 Cm7 F7 2BbM7 Am AmM7 Am7 Am(6) Bø7 E7b9 0.5Am7 0.5D+7 0.5Gm7 0.5C7 FM7 Am7 Dm7 0.5Gm7 0.5C7 FM7 Gm7 Am7 BbM7 Am7 Dm7 Gm7 C7 2F(6) Gm7 C7"
+    "chords": "[ FM7 Am7 Dm7 0.5Gm7 0.5C7 FM7 Gm7 Am7 BbM7 Am7 Dm7 Gm7 C7sus4 [ Fadd6 Dm7 Gm7 C7 ] [ Fadd6 BbM7 2Fadd6 ] ] Cm7 F7 Dm7 Gm7 Cm7 F7 2BbM7 Am AmM7 Am7 Amadd6 Bø7 E7b9 0.5Am7 0.5D+7 0.5Gm7 0.5C7 FM7 Am7 Dm7 0.5Gm7 0.5C7 FM7 Gm7 Am7 BbM7 Am7 Dm7 Gm7 C7 2Fadd6 Gm7 C7"
   },
   "blue_bossa": {
     "composer": ["Kenny Dorham"],
@@ -321,7 +321,7 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [2,1,5,-2,1,1,1,1,2,2,1,5,-2,1,1,1,1,2,2,1,5,-1,1,1,1,1,1,1,13,-4,2,1,5,-2,1,1,1,1,2,2,1,5,-2,1,1,1,1,2,2,1,5,-1,1,1,1,1,1,1,13,-4,1,1,1,1,1,3,1,1,1,1,4,2,1,1,3,1,4,-4,1,1,1,1,1,3,1,1,1,1,4,1.33,1.33,1.33,1,3,1.33,1.33,1.33,3,1,2,1,5,-2,1,1,1,1,2,2,1,5,-2,1,1,1,1,2,2,1,5,-1,1,1,1,1,1,1,13,-4],
-    "chords": "[ F(6) Abo7 Gm7 C7 F(6) Dm7 Db7 C7 FM7 Abo7 Gm7 C7 [ F(6) Gm7 C7 ] [ 2F(6) Eø7 A7 ] ] Dm DmM7 Dm7 G7 FM7 0.5Gm7 0.5C7 FM7 0.5Eø7 0.5A7 Dm DmM7 Dm7 G7 FM7 G9 Db7 C7 F(6) Abo7 Gm7 C7 F(6) Dm7 Db7 C7 FM7 Abo7 Gm7 C7 2F(6) Gm7 C7"
+    "chords": "[ Fadd6 Abo7 Gm7 C7 Fadd6 Dm7 Db7 C7 FM7 Abo7 Gm7 C7 [ Fadd6 Gm7 C7 ] [ 2Fadd6 Eø7 A7 ] ] Dm DmM7 Dm7 G7 FM7 0.5Gm7 0.5C7 FM7 0.5Eø7 0.5A7 Dm DmM7 Dm7 G7 FM7 G9 Db7 C7 Fadd6 Abo7 Gm7 C7 Fadd6 Dm7 Db7 C7 FM7 Abo7 Gm7 C7 2Fadd6 Gm7 C7"
   },
   "blue_in_green": {
     "composer": ["Miles Davis"],
@@ -348,7 +348,7 @@
     "pickup": 0,
     "bars": "[8] * 12",
     "notes": [2,1,1,2,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,0.67,0.67,0.67,1,1,-1,1,0.67,0.67,0.67,2,1,1,1,1,-1,1,1,1,1,1,1,1,1,3,1,1,2,-1,3,1,1,2,-1,1,1.33,1.33,1.33,1,1,1,1,1,1,1,1,2,-1,3,1,1,2,-1,3,1,1,2,-2],
-    "chords": "2F(6) Em7 A7b9 Dm7 G7 Cm7 F7 2Bb7 Bbm7 Eb7 Am7 D7 Abm7 Db7 2Gm7 2C7 Am7 Dm7 Gm7 C7"
+    "chords": "2Fadd6 Em7 A7b9 Dm7 G7 Cm7 F7 2Bb7 Bbm7 Eb7 Am7 D7 Abm7 Db7 2Gm7 2C7 Am7 Dm7 Gm7 C7"
   },
   "bluesette": {
     "composer": ["Jean Thielemans", "Norman Gimbel"],
@@ -377,14 +377,14 @@
     "notes": [],
     "chords": ""
   },
-  "brazil": {// Check chords
+  "brazil": {
     "composer": ["Ary Barroso", "S. K. Russell"],
     "keysig": "1s",
     "timesig": "4/4",
     "pickup": 4,
     "bars": "[8] * 58",
     "notes": [4,18,2,2,2,2,2,1,2,4,15,2,2,2,2,2,1,2,19,2,2,2,2,2,1,2,13,4,12,4,4,4,4,4,18,2,2,2,2,2,1,2,19,2,2,2,2,2,1,2,19,2,2,2,2,2,1,2,33,18,2,2,2,2,2,1,2,19,2,2,2,4,1,2,17,4,2,2,4,1,2,13,4,12,4,12,4,12,4,16,-16],
-    "chords": "8G(6) 12Am7 4D7 4G(6) 2Am7 2D7 GM7 G7 Gb7 F7 24E7b9 8Am7 8Cm(6) 7.5GM7 0.5Bbo7 4Am7 4D7 4G(6) 2Am7 2D7 4G(6) 2Am7 2D7 4G(6) 2Am7 2D7"
+    "chords": "8Gadd6 12Am7 4D7 4Gadd6 2Am7 2D7 GM7 G7 Gb7 F7 24E7b9 8Am7 8Cmadd6 7.5GM7 0.5Bbo7 4Am7 4D7 4Gadd6 2Am7 2D7 4Gadd6 2Am7 2D7 4Gadd6 2Am7 2D7"
   },
   "bud_powell": {
     "composer": ["Chick Corea", "Neville Potter"],
@@ -402,9 +402,9 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [4,4,2,6,-2,2,2,2,2,2,2,2,6,2,2,4,2,10,2,2,2,4,1,2,5,1,2,5,1,2,5,2,4,1,2,5,1,2,5,1,2,9,4,4,2,6,-2,2,2,2,2,2,2,2,6,2,2,4,2,10,2,2,2,4,1,2,9,-2,2,2,2,2,2,2,2,4,4,2,2,2,2,8,-8],
-    "chords": "BbM7 F+7 BbM7 G7 Cm CmM7 Cm7 F7 2BbM7 2Gm7 2C7 2F7 BbM7 D7 Gm7 Bb7 EbM7 G7 2Cm7 F7 Eo7 F7 F+7 BbM7 Bo7 Cm7 F7 BbM7 F+7 BbM7 G7 Cm CmM7 Cm7 F7 2BbM7 2Gm7 2Am7 2D7 Gm7 Gbo7 Fm7 Bb7 2EbM7 2Eo7 Dm7 Dbo7 Cm7 F7 2Bb(6) Cm7 F7"
+    "chords": "BbM7 F+7 BbM7 G7 Cm CmM7 Cm7 F7 2BbM7 2Gm7 2C7 2F7 BbM7 D7 Gm7 Bb7 EbM7 G7 2Cm7 F7 Eo7 F7 F+7 BbM7 Bo7 Cm7 F7 BbM7 F+7 BbM7 G7 Cm CmM7 Cm7 F7 2BbM7 2Gm7 2Am7 2D7 Gm7 Gbo7 Fm7 Bb7 2EbM7 2Eo7 Dm7 Dbo7 Cm7 F7 2Bbadd6 Cm7 F7"
   },
-  "byrd_like": {// Check chords
+  "byrd_like": {
     "composer": ["Freddie Hubbard"],
     "keysig": "1f",
     "timesig": "4/4",
@@ -413,7 +413,7 @@
     "notes": [1,-1,1,1,1,2,-1,1,2,1,1,-3,2,2,2,2,1,1,1,-1,1,-1,1,-1,1,2,-1,1,1,1,2,-1,1,1,1,1,1,1,1,1,1,1,1,-3,2,1,1,2,2,2,-2,1,3,1,1,1,1,1,1,0.5,0.5,1,3,1,1,1,1,1,1,-7,1],
     "chords": "[ 2F7 2Bb7 3F7 A7 4Bb7 Am7 D7 Abm7 Db7 Gm7 Db9 2C7 F7 D7 Gm7 C7 ]"
   },
-  "call_me": {// Check chords
+  "call_me": {
     "composer": ["Tony Hatch"],
     "keysig": "",
     "timesig": "4/4",
@@ -429,7 +429,7 @@
     "pickup": 0,
     "bars": "[8] * 36",
     "notes": [4,4,2,1,2,1,2,4,4,2,1,2,1,2,4,4,2,1,2,1,2,12,-4,4,4,2,1,2,1,2,8,8,4,4,2,1,2,1,2,6,2,4,4,4,4,2,1,2,1,2,4,4,2,1,2,1,2,4,4,2,1,2,1,2,14,-2,4,4,2,1,2,1,2,4,4,2,1,2,1,2,4,4,2,1,2,1,2,12,-2,2,2,1,2.33,1.33,1.33,6,2,12,-4],
-    "chords": "F F(6) 2F#o7 Gm7 Gm(6) 2G#o7 Am7 Dm7 2A7 Eø7 A7b9 D+7 D7 2Gm7 2C7 2Aø7 D7b9 Dm7 G7 Dm7 G7 Gm7 C7 Gm7 C7 F F(6) 2F#o7 Gm7 Gm(6) 2G#o7 Am7 Dm7 2A7 2Am7 2D7 2Gm7 2C7 2Aø7 2D7 2Gm7 2C7 E7sus4 A7 Aø7 D7 2Gm7 2C7 2F(6) Gm7 C7"
+    "chords": "F Fadd6 2F#o7 Gm7 Gmadd6 2G#o7 Am7 Dm7 2A7 Eø7 A7b9 D+7 D7 2Gm7 2C7 2Aø7 D7b9 Dm7 G7 Dm7 G7 Gm7 C7 Gm7 C7 F Fadd6 2F#o7 Gm7 Gmadd6 2G#o7 Am7 Dm7 2A7 2Am7 2D7 2Gm7 2C7 2Aø7 2D7 2Gm7 2C7 E7sus4 A7 Aø7 D7 2Gm7 2C7 2Fadd6 Gm7 C7"
   },
   "cant_help_lovin_dat_man": {
     "composer": ["Jerome Kern", "Oscar Hammerstein II"],
@@ -438,7 +438,7 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [1,1,1,3,2,1,1,1,5,1,1,1,3,2,1,1,1,5,4,4,1,1,1,3,2,12,-4,1,1,1,3,2,1,1,1,5,1,1,1,3,2,1,1,1,5,4,4,1,1,1,3,2,12,-4,2,2,2,1,9,2,2,2,1,9,2,2,2,2,2,2,2,2,5,1,1,1,8,1,1,1,3,2,1,1,1,5,1,1,1,3,2,1,1,1,5,4,4,1,1,1,3,2,12,-4],
-    "chords": "[ EbM7 Cm7 Fm7 Bb7 EbM7 0.5Bbm7 0.5Eb7 AbM7 Db7 Gm7 Cm7 B7 0.5Bb+7 0.5Bb7 [ Eb(6) Cm7 Fm7 Bb7 ] [ 2Eb(6) Bbm7 Eb7 ] ] 2Ab(6) 2Ao7 Eb/Bb C7 F7 F#o7 Gm7 C7b9 Fm7 F7 2Fm7/Bb 2Bb7 EbM7 Cm7 Fm7 Bb7 EbM7 0.5Bbm7 0.5Eb7 AbM7 Db7 Gm7 Cm7 B7 0.5Bb+7 0.5Bb7 Eb(6) Cm7 Fm7 Bb7"
+    "chords": "[ EbM7 Cm7 Fm7 Bb7 EbM7 0.5Bbm7 0.5Eb7 AbM7 Db7 Gm7 Cm7 B7 0.5Bb+7 0.5Bb7 [ Ebadd6 Cm7 Fm7 Bb7 ] [ 2Ebadd6 Bbm7 Eb7 ] ] 2Abadd6 2Ao7 Eb/Bb C7 F7 F#o7 Gm7 C7b9 Fm7 F7 2Fm7/Bb 2Bb7 EbM7 Cm7 Fm7 Bb7 EbM7 0.5Bbm7 0.5Eb7 AbM7 Db7 Gm7 Cm7 B7 0.5Bb+7 0.5Bb7 Ebadd6 Cm7 Fm7 Bb7"
   },
   "celia": {
     "composer": ["Earl 'Bud' Powell"],
@@ -447,7 +447,7 @@
     "pickup": 3,
     "bars": "[8] * 32",
     "notes": [1,1,1,0.33,0.33,0.33,1,1,1,1,1,0.33,0.33,0.33,1,1,1,-1,1,1,1,1,1,1,1,1,1,1,1,0.33,0.33,0.33,1,1,-2,1,1,1,1,1,1,1,1,1,0.67,0.67,0.67,1,1.67,0.67,0.67,1,1.67,0.67,0.67,1,3,1,1,1,1,1,1,1,1,1,1,1,1,-1,1,0.33,0.33,0.33,1,1,1,1,1,0.33,0.33,0.33,1,1,1,-1,1,1,1,1,1,1,1,1,1,1,1,0.33,0.33,0.33,1,1,-2,1,1,1,1,1,1,1,1,1,0.67,0.67,0.67,1,1.67,0.67,0.67,1,1.67,0.67,0.67,1,3,1,1,1,1,0.33,0.33,0.33,1,1,1,-5,1,1,1,0.67,0.67,0.67,2,1,3,0.33,0.33,0.33,1,1,1,1,1,1,1,1,1,1,1,1,1,0.67,0.67,0.67,1,1,1,1,1,3,1,1,1,1,0.33,0.33,0.33,1,1,1,-3,1,1,1,1,1,1,1,1,1,1,1,0.33,0.33,0.33,1,-3,1,1,1,0.33,0.33,0.33,1,1,1,1,1,0.33,0.33,0.33,1,1,1,-1,1,1,1,1,1,1,1,1,1,1,1,0.33,0.33,0.33,1,1,-2,1,1,1,1,1,1,1,1,1,0.67,0.67,0.67,1,1.67,0.67,0.67,1,1.67,0.67,0.67,1,3,1,1,1,1,0.33,0.33,0.33,1,1,1,-5,1],
-    "chords": "[ 2BbM7 2Cø7 2Dm7 Ebm7 Ab7 Dm7 Db7 Cm7 B7 [ 2BbM7 Cø7 F7b5 ] [ 4BbM7 ] ] 2Aø7 2D7 3Gm(6) Gm7 2C7 2C7b5 2Cø7 2F7b5 2BbM7 2Cø7 2Dm7 Ebm7 Ab7 Dm7 Db7 Cm7 B7 4BbM7"
+    "chords": "[ 2BbM7 2Cø7 2Dm7 Ebm7 Ab7 Dm7 Db7 Cm7 B7 [ 2BbM7 Cø7 F7b5 ] [ 4BbM7 ] ] 2Aø7 2D7 3Gmadd6 Gm7 2C7 2C7b5 2Cø7 2F7b5 2BbM7 2Cø7 2Dm7 Ebm7 Ab7 Dm7 Db7 Cm7 B7 4BbM7"
   },
   "captain_marvel": {
     "composer": ["Chick Corea"],
@@ -483,7 +483,7 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [4,3,7,2,4,3,6,3,4,3,6,2,2,2,2,2,1,6,-2,4,3,7,2,3,7,1,2,2,4,7,1,2,2,3,1,2,1,8,2,4,3,7,2,4,3,6,3,4,3,6,2,2,2,1,2,4,1,2,2,5,3,6,2,2,2,2,1,2,2,1,2,2,2,2,2,3,1,2,2,2,5,-8,6,1,6,2,4,1,1,2,3,1,2,2,4,7,1,2,2,8,9,-1,1,1,1,1,2,2,2,2,2,2,2,7,1,2,2,2,2,1,2,4,1,2,2,8,9,4,3,7,2,4,3,6,3,4,3,6,2,2,2,1,2,4,1,2,2,2,2,2,2,2,2,2,2,3,1,2,3,1,2,2,2,2,2,1,2,4,1,2,2,6,1,1,1,2,1,2,2,2,2,1,2,4,1,2,2,9,-8],
-    "chords": "2Dm 2Dm7/C 2E7/B 2E7 2Eø7 2A7b9 2Dm Eø7 A7b9 2Dm Bø7 E7 4Am7 4BbM7 4A7b9 2Dm 2Dm7/C 2E7/B 2E7 2Eø7 2A7b9 2Dm 2D7b9 GmGm7/F A7/E A7 2Dm 2Dm7/C 2Bø7 2Bbm(6) 2Dm 2A7"
+    "chords": "2Dm 2Dm7/C 2E7/B 2E7 2Eø7 2A7b9 2Dm Eø7 A7b9 2Dm Bø7 E7 4Am7 4BbM7 4A7b9 2Dm 2Dm7/C 2E7/B 2E7 2Eø7 2A7b9 2Dm 2D7b9 GmGm7/F A7/E A7 2Dm 2Dm7/C 2Bø7 2Bbmadd6 2Dm 2A7"
   },
   "chelsea_bridge": {
     "composer": ["Billy Strayhorn"],
@@ -492,7 +492,7 @@
     "pickup": 6,
     "bars": "[8] * 32",
     "notes": [1,1,1,1,0.67,0.67,0.67,6,2,6,2,2,2,2,2,8,1,7,1,7,1,9,1,1,1,1,0.67,0.67,0.67,6,2,6,2,2,2,2,2,8,1,7,1,7,1,13,1,1,1,1,1,5,1,1,0.67,0.67,0.67,2,1,1,1,1,1,1,1,2,1,6,1,1,3,1,2,1,1,1,5,1,1,2,1,1,2,1,1,2,1,1,1,1,0.67,0.67,0.67,6,2,6,2,2,2,2,2,8,1,7,1,7,1,13,-2],
-    "chords": "[ 2Eb7#11 2Db7#11 Eb7 Db7 2Bb7 2Ebm7 2Ab7 2Db(6) [ 0.5Db(6) 0.5C7 0.5B7 0.5Bb7 ] [ 1.5Db 0.5B7 ] ] F#m7 B7 Abm7 Go7 F#m7 F7 Bm7/E E7 AM7 0.5Am7 0.5D7 2GM7 2Gm7 0.5Db7 0.5C7 0.5B7 0.5Bb7 2Eb7#11 2Db7#11 Eb7 Db7 2Bb7 2Ebm7 2Ab7 2.5Db(6) 0.5C7 0.5B7 0.5Bb7"
+    "chords": "[ 2Eb7#11 2Db7#11 Eb7 Db7 2Bb7 2Ebm7 2Ab7 2Dbadd6 [ 0.5Dbadd6 0.5C7 0.5B7 0.5Bb7 ] [ 1.5Db 0.5B7 ] ] F#m7 B7 Abm7 Go7 F#m7 F7 Bm7/E E7 AM7 0.5Am7 0.5D7 2GM7 2Gm7 0.5Db7 0.5C7 0.5B7 0.5Bb7 2Eb7#11 2Db7#11 Eb7 Db7 2Bb7 2Ebm7 2Ab7 2.5Dbadd6 0.5C7 0.5B7 0.5Bb7"
   },
   "a_child_is_born": {
     "composer": ["Thad Jone"],
@@ -528,7 +528,7 @@
     "pickup": 2,
     "bars": "[8] * 56",
     "notes": [2,1,2,3,1,3,1,3,1,15,2,1,2,2,2,1,1,2,2,2,1,2,-1,1,2,2,6,2,2,1,3,1,3,1,3,1,15,2,1,2,3,1,3,1,3,1,15,2,1,2,2,2,1,1,2,2,2,1,2,-1,1,2,2,6,2,2,1,3,1,3,1,3,1,9,-2,1,1,2,2,3,6,-1,2,1,2,2,4,2,10,4,2,10,4,2,4,1,1,2,2,3,5,-1,2,1,2,2,4,2,10,4,2,10,2,2,2,-1,2,1,2,2,2,1,2,3,1,3,1,3,1,15,2,1,2,2,2,1,1,2,2,2,1,2,-1,1,2,2,6,2,2,1,3,1,3,1,3,2,4,4,4,4,2,1,3,1,3,1,3,2,12,-4],
-    "chords": "[ CM7 C(6) Em7 Ebo7 2Dm7 2G7 CM7 C(6) Gm7 C7 2FM7 2Bb7 CM7 C(6) [ 2F7 E7 A7 D7 G7 ] [ F7 G7sus4 C(6) F7 2C(6) ] ] 2AbM7 2Ab(6) 2DbM7 2Bbm7 4Eb7 2Ab(6) Bbm7 Eb7sus4 2AbM7 2Ab(6) 2GM7 2Em7 2Am7 2D7 4G7 CM7 C(6) Em7 Ebo7 2Dm7 2G7 CM7 C(6) Gm7 C7 2FM7 2Bb7 CM7 C(6) 2F7 Em7b5 Bb7 A7 Eb9#11 2D7 Dm7 G7 2C(6) Dm7 G7]"
+    "chords": "[ CM7 Cadd6 Em7 Ebo7 2Dm7 2G7 CM7 Cadd6 Gm7 C7 2FM7 2Bb7 CM7 Cadd6 [ 2F7 E7 A7 D7 G7 ] [ F7 G7sus4 Cadd6 F7 2Cadd6 ] ] 2AbM7 2Abadd6 2DbM7 2Bbm7 4Eb7 2Abadd6 Bbm7 Eb7sus4 2AbM7 2Abadd6 2GM7 2Em7 2Am7 2D7 4G7 CM7 Cadd6 Em7 Ebo7 2Dm7 2G7 CM7 Cadd6 Gm7 C7 2FM7 2Bb7 CM7 Cadd6 2F7 Em7b5 Bb7 A7 Eb9#11 2D7 Dm7 G7 2Cadd6 Dm7 G7]"
   },
   "come_sunday": {
     "composer": ["Duke Ellington"],
@@ -537,9 +537,63 @@
     "pickup": 0,
     "bars": "[8] * 32",
     "notes": [2,2,2,2,4,2,2,2,2,2,2,8,2,2,2,2,2,2,3,1,16,2,2,2,2,4,2,2,2,2,2,2,8,2,2,2,2,2,2,3,1,16,2,2,2,2,2,2,2,2,2,2,2,2,8,2,2,2,2,2,2,2,2,2,2,2,2,8,2,2,2,2,4,2,2,2,2,2,2,8,2,2,2,2,2,2,3,1,16],
-    "chords": "[ 2F7 2Eb7 1.5F7 0.5D+7 2G7 2Cm7 2F7 Bb Eb/Bb Bbo7 Bb(6) ] D7 Eb7 2D7 2Gm7 2C7 F7 Cm7 F7 0.5Ab7 0.5G+7 2C7 2F+7 2F7 2Eb7 1.5F7 0.5D+7 2G7 2Cm7 2F7 Bb Eb/Bb Bbo7 Bb(6)"
+    "chords": "[ 2F7 2Eb7 1.5F7 0.5D+7 2G7 2Cm7 2F7 Bb Eb/Bb Bbo7 Bbadd6 ] D7 Eb7 2D7 2Gm7 2C7 F7 Cm7 F7 0.5Ab7 0.5G+7 2C7 2F+7 2F7 2Eb7 1.5F7 0.5D+7 2G7 2Cm7 2F7 Bb Eb/Bb Bbo7 Bbadd6"
   },
-  "": {
+  "Como En Vietnam": {
+    "composer": ["Steve Swallow"],
+    "keysig": "5f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "[8] * 20",
+    "notes": [-3,1,2,1,3,2,2,2,3,1,12,-3,1,2,1,3,2,8,1,2,9,6,1,9,6,1,9,2,1,2.33,1.33,1.33,2,1,2.33,1.33,1.33,2,1,2,2,9,2,1,2.33,1.33,1.33,2,1,2.33,1.33,1.33,3,5,1,2,2,3],
+    "chords": "8Bbm 8EM7 4E7 4A7b9 2Eb7 2Ab7 2Db 2Gb7 2Eb7 2Ab7 2Db Gb7 F7"
+  },
+  "confirmation": {
+    "composer": ["Charlie Parker"],
+    "keysig": "1f",
+    "timesig": "4/4",
+    "pickup": 1,
+    "bars": "[8] * 32",
+    "notes": [1,1,2,1,1,1,0.67,0.67,0.67,1,1,0.33,0.33,0.33,1,1,2,2,3,-3,1,1,1,0.33,0.33,0.33,1,-1,2,1,1,1,0.33,0.33,0.33,1,1,3,-1,1,0.33,0.33,0.33,1,1,1,1,3,1,1,-3,0.5,0.5,1,1,1,1,-1,3,2,-1,1,0.67,0.67,0.33,0.33,1,1,0.5,0.5,3,-1,2,2,3,-3,1,1,1,0.33,0.33,0.33,1,1,1,1,2,1,1,1,1,1,-3,1,1,1,0.33,0.33,0.33,1,-2,1,1,0.33,0.33,0.33,1,1,1,1,1,-5,3,1,-1.5,0.5,0.5,0.5,1,2,1,1,0.5,0.5,1,1,1,1,-2,1,1,1,4,1,-7,1,1,0.5,0.5,0.5,0.5,2,1,1,1,1.33,1.33,1.33,1,1,-1,0.5,0.5,0.67,0.67,0.67,1,0.5,0.5,0.5,0.5,-4,1,1,1,1,1,1,1,-1,3,1,1,0.67,0.67,0.67,1,1,0.33,0.33,0.33,1,1,2,2,3,-3,1,1,1,0.33,0.33,0.33,1,-1,2,1,1,1,0.33,0.33,0.33,1,1,3,-1,1,0.33,0.33,0.33,1,1,1,1,3,1,1,-1,3,2,-6],
+    "chords": "2Fadd6 Eø7 A7 2Dm Cm7 F7 2Bb7 Am7 D7 2G7 2C7 2Fadd6 Eø7 A7 2Dm Cm7 F7 2Bb7 Am7 D7 Gm7 C7 2Fadd6 Cm CmM7 Cm7 F7 4BbM7 2Ebm7 2Ab7 2DbM7 Gm7 C7 2Fadd6 Eø7 A7 2Dm Cm7 F7 2Bb7 Am7 D7 Gm7 C7 2F"
+  },
+  "contemplation": {
+    "composer": ["McCoy Tyner"],
+    "keysig": "3f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "countdown": {
+    "composer": ["John Coltrane"],
+    "keysig": "",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "[8] * 16",
+    "notes": [-4,4,4,4,4,2,2,8,4,4,4,4,4,4,8,2,2,2,2,4,4,4,4,4,1,2,1,10,1,1,1,1,1,1,6,6,-4],
+    "chords": "Em7 F7 BbM7 Db7 GbM7 A7#9 2DM7 Dm7 Eb7 AbM7 B7 EM7 G7 2CM7 Cm7 Db7 GbM7 A7 DM7 F7 2BbM7 2Em7 2F7 2BbM7 2Eb7#11"
+  },
+  "crescent": {
+    "composer": ["John Coltrane"],
+    "keysig": "3f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "",
+    "notes": [],
+    "chords": ""
+  },
+  "crazy": {
+    "composer": ["Willie Nelson"],
+    "keysig": "2f",
+    "timesig": "4/4",
+    "pickup": 0,
+    "bars": "[8] * 32",
+    "notes": [1,5,-1,1,1.33,1.33,1.33,1.33,1.33,1.33,1,11,-2,2,1,7,1.33,1.33,1.33,1.33,1.33,1.33,12,-4,1,5,-1,1,1.33,1.33,1.33,1.33,1.33,1.33,1,11,-1.33,1.33,1.33,1,5,-1,1,1.33,1.33,1.33,2.67,0.67,0.67,8,-8,1,5,-2,1.33,1.33,1.33,1.33,1.33,1.33,1,9,-6,1,5,-2,1.33,1.33,1.33,1.33,1.33,1.33,6.67,0.67,0.67,4,-2,2,1,5,-1,1,1.33,1.33,1.33,1.33,1.33,1.33,1,11,-2,2,1.33,1.33,1.33,1,1,-1,1,1.33,1.33,1.33,1,1,-0.67,0.67,0.67,1.33,1.33,1.33,1,1,2,4,-4],
+    "chords": "1.5Bb 0.5Ab 2G7 4Cm 3F7 C#o7 Bb Bo7 Cm7 F7 1.5Bb 0.5Ab 2G7 4Cm 4F7 Bb Cm7 C#o7 Bb7/D 3Ebadd6 Eo7 2.5Bb 0.5A 0.5Bb 0.5B 4C7 3.5F7 0.5F+7 1.5Bb 0.5Ab 2G7 4Cm Eb Dm7 Cm7 Bo7 Cm7 F7 Bb F7"
+  },
+  "crystal_silence": {
     "composer": [""],
     "keysig": "",
     "timesig": "4/4",
@@ -548,7 +602,7 @@
     "notes": [],
     "chords": ""
   },
-  "": {
+  "d_natural_blues": {
     "composer": [""],
     "keysig": "",
     "timesig": "4/4",
@@ -557,7 +611,7 @@
     "notes": [],
     "chords": ""
   },
-  "": {
+  "daahoud": {
     "composer": [""],
     "keysig": "",
     "timesig": "4/4",
@@ -566,7 +620,7 @@
     "notes": [],
     "chords": ""
   },
-  "": {
+  "day_waves": {
     "composer": [""],
     "keysig": "",
     "timesig": "4/4",
@@ -575,7 +629,7 @@
     "notes": [],
     "chords": ""
   },
-  "": {
+  "dear_old_stockholm": {
     "composer": [""],
     "keysig": "",
     "timesig": "4/4",
@@ -584,68 +638,14 @@
     "notes": [],
     "chords": ""
   },
-  "": {
-    "composer": [""],
+  "dearly_beloved": {
+    "composer": ["Jerome Kern", "Johnny Mercer"],
     "keysig": "",
     "timesig": "4/4",
     "pickup": 0,
     "bars": "",
-    "notes": [],
-    "chords": ""
-  },
-  "": {
-    "composer": [""],
-    "keysig": "",
-    "timesig": "4/4",
-    "pickup": 0,
-    "bars": "",
-    "notes": [],
-    "chords": ""
-  },
-  "": {
-    "composer": [""],
-    "keysig": "",
-    "timesig": "4/4",
-    "pickup": 0,
-    "bars": "",
-    "notes": [],
-    "chords": ""
-  },
-  "": {
-    "composer": [""],
-    "keysig": "",
-    "timesig": "4/4",
-    "pickup": 0,
-    "bars": "",
-    "notes": [],
-    "chords": ""
-  },
-  "": {
-    "composer": [""],
-    "keysig": "",
-    "timesig": "4/4",
-    "pickup": 0,
-    "bars": "",
-    "notes": [],
-    "chords": ""
-  },
-  "": {
-    "composer": [""],
-    "keysig": "",
-    "timesig": "4/4",
-    "pickup": 0,
-    "bars": "",
-    "notes": [],
-    "chords": ""
-  },
-  "": {
-    "composer": [""],
-    "keysig": "",
-    "timesig": "4/4",
-    "pickup": 0,
-    "bars": "",
-    "notes": [],
-    "chords": ""
+    "notes": [4,3,1,2,4,2,4,3,1,8,4,3,1,2,2,2,2,4,3,1,8,2,2,10,2,4,12,2,2,6,2,2,2,4,12,4,3,1,2,4,2,4,3,1,8,4,3,1,2,2,2,2,4,3,1,8,2,2,12,4,12,4,3,1,2,4,2,14,-2],
+    "chords": "[ 2Dm7/G 2G7 2Dm7/G 2G7 2Dm7/G 2G7 2Dm7/G 2G7 [ 2CM7 2Am7 2Dm7 2G7 2Em7 2Am7 2Ebm7 2Ab7 ] [ 2CM7 2Am7 4D7 2Dm7 2G7 4Cadd6 ] ]"
   },
   "": {
     "composer": [""],

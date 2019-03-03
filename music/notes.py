@@ -2,84 +2,8 @@ import pretty_midi as pm
 import string
 import json
 import re
-
-
-# Every jazz chord symbol contains, following the letter specifying the root note, exactly one of the keys below.
-# These define the core "quality" of the chord, where the empty string corresponds to the simple major triad.
-# Each one comprises a triad chord and (optionally) a seventh note.
-# There are four triads that can be constructed by stacking combinations of major and minor thirds from the root:
-# major (= maj + min), minor (= min + maj), augmented (= maj + maj), and diminished (= min + min).
-# There are three possible seventh notes, defined by their interval from the root: major, minor, and diminished
-# (there is no augmented seventh, as this would be equal to the root, with an interval of a perfect octave).
-# The dictionary below maps each "chord quality" to its constituent triad and seventh note (where one exists).
-chord_quality = {
-    '': ('maj', None),
-    'm': ('min', None),
-    '+': ('aug', None),
-    'o': ('dim', None),
-    '7': ('maj', 'min'),
-    'M7': ('maj', 'maj'),
-    'm7': ('min', 'min'),
-    'mM7': ('min', 'maj'),
-    '+7': ('aug', 'min'),
-    '+M7': ('aug', 'maj'),
-    'o7': ('dim', 'dim'),
-    'ø7': ('dim', 'min')
-}
-
-# Map each of the four different types of triad to a set containing the relative positions of its constituent
-# notes in the 12-note chromatic scale (zero-indexed).
-triad_notes = {
-    'maj': {0, 4, 7},
-    'min': {0, 3, 7},
-    'aug': {0, 4, 8},
-    'dim': {0, 3, 6}
-}
-
-# Map each type of seventh note to its relative position in the 12-note chromatic scale.
-seven_notes = {
-    'maj': 11,
-    'min': 10,
-    'dim': 9,
-    None: 0
-}
-
-note_num_idx = {
-    1: 0,
-    2: 2,
-    3: 4,
-    4: 5,
-    5: 7,
-    6: 9,
-    7: 11,
-    9: 2,
-    11: 5,
-    13: 9
-}
-
-note_name_idx = {
-    'C': 0,
-    'C#': 1,
-    'Db': 1,
-    'D': 2,
-    'D#': 3,
-    'Eb': 3,
-    'E': 4,
-    'Fb': 4,
-    'E#': 5,
-    'F': 5,
-    'F#': 6,
-    'Gb': 6,
-    'G': 7,
-    'G#': 8,
-    'Ab': 8,
-    'A': 9,
-    'A#': 10,
-    'Bb': 10,
-    'B': 11,
-    'Cb': 11,
-    'B#': 0
-}
+import numpy as np
+import pickle
 
 
 class Note:
@@ -120,11 +44,11 @@ class Timestep:
     """
     def __init__(self, note_name=None, note_octave=None, note_pitch=None, root=None, bass=None, chord=None,
                  bar=None, duration=None, is_tied=False, is_barline=False, same_note=False):
-        self.note_name = note_name,
-        self.note_octave = note_octave,
-        self.note_pitch = note_pitch,
-        self.root = root,
-        self.bass = bass,
+        self.note_name = note_name
+        self.note_octave = note_octave
+        self.note_pitch = note_pitch
+        self.root = root
+        self.bass = bass
         self.chord = chord
         self.bar = bar
         self.duration = duration
@@ -187,6 +111,26 @@ class Piece:
         melody.write(output_file)
 
 
+    def _midi_melody(self, relative_durations, pitch_midi):
+        melody = pm.PrettyMIDI()
+        kboard = pm.Instrument(program=0)
+        pitch_list = self._get_melody_pitches(pitch_midi)
+        end = 0
+        idx = 0
+        for item in relative_durations:
+            duration = abs(item) * QUAVER_DURATION
+            start = end
+            end = round(start + duration)
+            if item < 0:
+                continue
+            pitch = pitch_list[idx]
+            idx += 1
+            new_note = pm.Note(100, pitch, start, end)
+            kboard.notes.append(new_note)
+        melody.instruments.append(kboard)
+        self.midi_melody = melody
+
+
     def get_melody(self, midi_data):
         song = pm.PrettyMIDI(midi_data)
         inst = song.instruments[0].notes
@@ -241,7 +185,7 @@ class Piece:
         return chords
 
 
-    def make_chord_alteration(self, alteration, chordset):
+    def make_chord_alteration(self, alt, chordset):
         """
         :param alteration: String indicating the chord alteration, including the label of the affected
             note, and the alteration type: 'b', '#', '()', or 'sus'.
@@ -249,8 +193,8 @@ class Piece:
             all the notes in the chord of interest, prior to alteration.
         :return: Chordset after alteration has been applied.
         """
-        type = alteration.translate(str.maketrans('', '', string.digits))  # 'b', '#', '()', or 'sus'
-        note = int(alteration.translate(str.maketrans('', '', type)))  # number of note affected
+        type = alt.translate(str.maketrans('', '', string.digits))  # 'b', '#', '()', or 'sus'
+        note = int(alt.translate(str.maketrans('', '', type)))  # number of note affected
         index = note_num_idx[note]  # position of affected note in the chromatic scale, zero-indexed
         if type in ['b', '#']:
             chordset.discard(index)
@@ -281,7 +225,7 @@ class Piece:
             exts = set()
 
         triad = triad_notes[chord_quality[kind][0]]
-        seven = seven_notes[chord_quality[kind][1]]
+        seven = seventh_notes[chord_quality[kind][1]]
         chordset = (triad|exts)
         chordset.add(seven)
         alts_lst = re.findall(alts_regex, alts)
@@ -296,7 +240,7 @@ class Piece:
             ([A-G][b#]?)
             ([m\+oø]?(?:M?(?:7|9|11|13))?)?
             ((?:\((?:\d+)\)|[b#]\d+|sus\d+)*)
-            (/([A-G][b#]?))?''', re.X)
+            (?:/([A-G][b#]?))?''', re.X)
         alts_regex = re.compile(r'(\((?:\d+)\)|[b#]\d+|sus\d+)')
         chord_sequence = self.get_chord_sequence()
         self.chords = [self.get_chord(chord, chord_regex, alts_regex) for chord in chord_sequence]
@@ -372,7 +316,10 @@ class Piece:
             prev_note = curr_note
             root_vec = [0 if i != note_name_idx[timestep.root] else 1 for i in range(12)]
             bass_vec = [0 if i != note_name_idx[timestep.bass] else 1 for i in range(12)]
-            chord_vec = [0 if i not in timestep.chord else 1 for i in range(12)]
+            if timestep.chord is None:
+                chord_vec = [0 for _ in range(12)]
+            else:
+                chord_vec = [0 if i not in timestep.chord else 1 for i in range(12)]
             # Between 1 triplet semiquaver and 24 triplet semiquavers (i.e. 1 bar).
             duration_vec = [0 if (i + 1) * 10 != timestep.duration else 1 for i in range(24)]
             timestep_vector = (note_name_vec + note_octave_vec + same_note_vec
@@ -380,9 +327,25 @@ class Piece:
             self.timestep_vectors.append(timestep_vector)
 
 
+def timesteps():
+    note_name_vecs = np.eye(13)[[12 if ts.same_note is True else note_name_idx[ts.note_name] for ts in piece]]
+    note_octave_vecs = np.eye(3)[[ts.note_octave - 3 for ts in piece]]
+    root_vecs = np.eye(12)[[note_name_idx[ts.root] for ts in piece]]
+    bass_vecs = np.eye(12)[[note_name_idx[ts.root] for ts in piece]]
+    chord_vecs = np.eye(12)[[ts.full_chordset for ts in piece]]
+    duration_vecs = np.eye(24)[[ts.duration / 10 - 1 for ts in piece]]
+
+
 with open('music/pieces.json') as f:
     piece_data = json.load(f)
+i = 0
+piece_list = []
 for title, details in piece_data.items():
+    i += 1
+    if i > 20:
+        break
+    else:
+        print(i)
     if not details["chords"]:
         continue
     piece = Piece(
@@ -400,3 +363,8 @@ for title, details in piece_data.items():
     piece.get_melody(piece.name + '.MID')
     piece.get_chords()
     piece.get_timesteps()
+    piece.get_timestep_vectors()
+    piece_list.append(np.array(piece.timestep_vectors))
+
+with open('music_timesteps.pkl', 'wb') as f:
+    pickle.dump(piece_list, f, pickle.HIGHEST_PROTOCOL)

@@ -30,9 +30,9 @@ class Note:
         self.time_remaining = self.duration
 
     def _extract_note_name_and_octave(self):
-        name_octave = pm.note_number_to_name(self.pitch)
-        self.name = name_octave.rstrip('0123456789')
-        self.octave = int(name_octave.lstrip(self.name))
+        name_octave = pm.note_number_to_name(self.pitch) if self.pitch > -1 else None
+        self.name = name_octave.rstrip('0123456789') if name_octave else None
+        self.octave = int(name_octave.lstrip(self.name)) if name_octave else None
 
 
 class EmptyNote(Note):
