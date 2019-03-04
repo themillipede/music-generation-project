@@ -22,6 +22,26 @@ class Melody:
         return [note.pitch for note in inst]
 
 
+class MelodyFromMidi:
+    def __init__(self, piece_duration, melody_midi):
+        song = pm.PrettyMIDI(melody_midi)
+        inst = song.instruments[0].notes
+        self.melody = []
+        time_elapsed = 0
+
+        for note in inst:
+            if note.start > time_elapsed:
+                new_rest = Note(-1, note.start - time_elapsed)
+                self.melody.append(new_rest)
+            new_note = Note(note.pitch, note.end - note.start)
+            self.melody.append(new_note)
+            time_elapsed = note.end
+
+        if piece_duration > time_elapsed:
+            final_rest = Note(-1, piece_duration - time_elapsed)
+            self.melody.append(final_rest)
+
+
 class Note:
     def __init__(self, pitch, duration):
         self.pitch = pitch
