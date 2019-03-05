@@ -1,4 +1,3 @@
-import pretty_midi as pm
 import string
 import json
 import re
@@ -824,8 +823,8 @@ import json
 import re
 import string
 import pretty_midi as pm
-from midi_creation import create_midi_melody, get_pitch_sequence_from_midi
-from music.notes import Note, Bar
+from midi_creation import create_midi_melody
+from Junk.notes import Note, Bar
 
 with open('music/pieces.json') as f:
     data = json.load(f)
