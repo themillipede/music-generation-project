@@ -1,11 +1,13 @@
 import note_parsing, chord_parsing, bar_parsing
 
+from definitions import QUAVER_DURATION
+
 
 class Piece:
     def __init__(self, title, composer, pickup_duration, melody, chords, bars):
         self.title = title
         self.composer = composer
-        self.pickup_duration = pickup_duration
+        self.pickup_duration = pickup_duration * QUAVER_DURATION
         self.timesteps = []
         this_note = note_parsing.EmptyNote()
         this_chord = chord_parsing.EmptyChord()
