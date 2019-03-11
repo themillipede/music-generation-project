@@ -11,7 +11,7 @@ class Melody:
         for num_quavers in relative_durations:
             new_note = Note(
                 pitch=pitches[i] if num_quavers > 0 else -1,
-                duration=abs(num_quavers) * QUAVER_DURATION
+                duration=round(abs(num_quavers) * QUAVER_DURATION)
             )
             i += 1 if num_quavers > 0 else 0
             self.melody.append(new_note)
