@@ -1063,3 +1063,237 @@ def get_chords(chords, note_position, chord_breakdown):
 # chords = "[ 2CM7 Cm7 F7 2BbM7 Bbm7 Eb7 2AbM7 Dm7 G7b9 [ CM7 Am7 Dm7 G7 ] [ 3CM7 Am7 ] ] 2Dm7 2G7 2CM7 2Am7 2Dm7 2G7 C#m7 F#7 Dm7 G7 2CM7 Cm7 F7 2BbM7 Bbm7 Eb7 2AbM7 Dm7 G7b9 CM7 Am7 Dm7 G7"
 chords = "2C7b5sus4/G Cm7 F13 2Ebo7 2Dm7 G7 G7#5"
 get_chord_sequence(chords)
+
+
+"""
+- There should be a 0
+- There should be a 5, unless there is a #5 or b5
+    - If there is a 5, it could be a major or minor triad
+        - If there is a minor 3rd, it must be a minor triad
+        - If there is a major 3rd, it must be a major triad
+    - If there is a #5, it could be an augmented triad, or it could be an alteration
+        - If there is a minor 3rd, it must be an alteration
+        - If there is a major 3rd, it must be augmented 
+    - If there is a b5, it could be a diminished triad, or it could be an alteration
+        - If there is a minor 3rd, it could be a diminished triad, or it could be an alteration
+            - If there is a diminished or minor 7th, it must be a diminished triad
+            - If there is a major 7th, it must be an alteration
+        - If there is a major 3rd, it must be an alteration
+
+
+
+- no 7
+    - perfect 5
+        - minor 3rd
+            - minor chord
+        - major 3rd
+            - major chord
+    - flat 5
+        - minor 3rd
+            - diminished chord
+        - major 3rd
+            - major b5 chord (?)
+    - sharp 5
+        - minor 3rd
+            - minor #5 chord
+        - major 3rd
+            - augmented chord
+- diminished 7
+    - diminished 7th chord
+    - half diminished 7th chord
+- minor 7
+    - dominant 7th chord
+    - minor 7th chord
+    - augmented 7th chord
+- major 7
+    - major 7th chord
+    - minor major 7th chord
+    - augmented major 7th chord
+
+
+
+Check for a 4th:
+    If exists:
+        Check for maj or min 3rd:
+            If exists:
+                Revisit - either 11th chord or add11
+            If not exists:
+                Equals sus4 chord
+                Remove 4th and add maj 3rd
+
+
+
+chord_quality = {
+    '': ('maj', None), M3 07 --> 9, b9, #9, 11, #11, 6, b6
+    'm': ('min', None), m3 07 --> 9, b9, 11, #11, 6, b6 
+    '+': ('aug', None), M3 07 --> 9, b9, #9, 11, #11, 6
+    'o': ('dim', None), m3 07 --> 9, b9, 11, b6
+    '7': ('maj', 'min'), M3 m7 --> b9, #9, 11, #11, 6, b6
+    'M7': ('maj', 'maj'), M3 M7 --> b9, #9, 11, #11, 6, b6
+    'm7': ('min', 'min'), m3 m7 --> b9, 11, #11, 6, b6
+    'mM7': ('min', 'maj'), m3 M7 --> b9, 11, #11, 6, b6
+    '+7': ('aug', 'min'), M3 m7 --> b9, #9, 11, #11, 6
+    '+M7': ('aug', 'maj'), M3 M7 --> b9, #9, 11, #11, 6
+    'o7': ('dim', 'dim'), m3 d7 --> b9, 11, b6    
+    'ø7': ('dim', 'min') m3 m7 --> b9, 11, 6, b6
+}
+
+
+
+First identify the third and seventh
+
+- Get dict of chord patterns, matching to chord names
+- If patten is present, then remove those ones, and identify the extensions
+- If pattern is not present, then check for alterations in order:
+    - major, 7, M7, mM7 can have a flat 5
+    - minor, m7, mM7 can have a sharp 5
+    - Any major or minor triad can have a flat 5
+    - Any minor triad can have a sharp 5
+
+
+
+M3 07
+m3 07
+M3 m7
+    7
+    +7
+M3 M7
+    M7
+    +7
+m3 m7
+m3 M7
+m3 d7
+
+
+
+
+
+
+
+M7
+m7
+7
+7b9
+M
+o7
++7
+add6
+9
+b9
+m
+7#9
+ø7
+7b5
+9sus4
+7sus4
+M9
+7#11
+mM7
+madd6
++M7
+7add13
+o
+b9sus4
+M7#11
++7b9
+add9
+oadd9
+7b5b9
+13
+9b5
++7#9
+madd6add9
+9#11
+7sus4b9
+m9#5
+m#5
+7b9#11
+
+All possible combinations:
+M: sus2, sus4, add6, add9, b9, #9, add11, #11
+m
+o
++
+
+note_num_idx = {
+    1: 0,
+    2: 2,
+    3: 4,
+    4: 5,
+    5: 7,
+    6: 9,
+    7: 11,
+    9: 2,
+    11: 5,
+    13: 9
+}
+
+Check for a 4th or 2nd with no 3rd (i.e. sus), then remove sus note and add a major 3rd
+Check for a b5 with no 5 or #5, then remove b5 and add a 5
+    (if not o - positions 3 and not 4 - or o7 - positions 3 and 9 and not 4 - positions set)
+Check for a #5 with a minor 3rd and no major 3rd, then remove #5 and add a 5
+Match to core chord type, treating anything remaining as an extension
+
+
+
+o_or_o7_or_ø7_chord = {f3, f5}.issubset(chordset) and {p3, p5, p7}.isdisjoint(chordset)
+contains_flat_fifth = f5 in chordset and p5 not in chordset and (s5 not in chordset or p4 in chordset)
+if contains_flat_fifth and not o_or_o7_or_ø7_chord:
+    alt += 'b5'
+    chordset.remove(f5)
+    chordset.add(p5)
+
+if {s5, f3}.issubset(chordset) and {p3, p5}.isdisjoint(chordset) and not o_or_o7_or_ø7_chord:
+    alt += '#5'
+    chordset.remove(s5)
+    chordset.add(p5)
+
+
+
+has_augmented_triad = {p3, s5}.issubset(chordset) and p5 not in chordset
+o_or_o7_or_ø7_chord = {f3, f5}.issubset(chordset) and {p3, p5, p7}.isdisjoint(chordset)
+if not (has_augmented_triad or o_or_o7_or_ø7_chord):
+    flat5 = f5 in chordset and p5 not in chordset and (s5 not in chordset or p4 in chordset)
+    sharp5 = {s5, f3}.issubset(chordset) and {p3, p5}.isdisjoint(chordset)
+    alt += 'b5' if flat5 else '#5' if sharp5 else ''
+    chordset.remove(f5) if flat5 else chordset.remove(s5) if sharp5 else None
+    chordset.add(p5)
+
+
+
+    if f6 in chordset:
+        alt += 'b13'
+        chordset.remove(f6)
+        chordset.add(p6)
+
+    if s4 in chordset:
+        alt += '#11'
+        chordset.remove(s4)
+        chordset.add(p4)
+
+    if s2 in chordset:
+        alt += '#9'
+        chordset.remove(s2)
+        chordset.add(p2)
+
+    if f2 in chordset:
+        alt += 'b9'
+        chordset.remove(f2)
+        chordset.add(p2)
+
+    if core_chord and core_chord[-1] == '7':
+        if {p2, p4, p6}.issubset(chordset):
+            core_chord = core_chord.replace('7', '13')
+            chordset -= {p2, p4, p6}
+        elif {p2, p4}.issubset(chordset):
+            core_chord = core_chord.replace('7', '11')
+            chordset -= {p2, p4}
+        elif {p2}.issubset(chordset):
+            core_chord = core_chord.replace('7', '9')
+            chordset -= {p2}
+
+    for item in chordset:
+        if (core_chord[-1] == '9' or core_chord[-2:] in ['11', '13']) and d[item] in [9, 11, 13]:
+            continue
+        alt += 'add%s' % d[item]
+"""
