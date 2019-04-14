@@ -656,50 +656,51 @@
     "notes": [],
     "chords": ""
   },
-  "": {
+  "valse_hot": {
     "composer": [""],
     "keysig": "",
-    "timesig": "4/4",
+    "timesig": "3/4",
     "pickup": 0,
     "bars": "",
     "notes": [],
     "chords": ""
   },
-  "": {
+  "very_early": {
     "composer": [""],
     "keysig": "",
-    "timesig": "4/4",
+    "timesig": "3/4",
     "pickup": 0,
     "bars": "",
     "notes": [],
     "chords": ""
   },
-  "": {
+  "the_very_thought_of_you": {
     "composer": [""],
     "keysig": "",
     "timesig": "4/4",
-    "pickup": 0,
-    "bars": "",
-    "notes": [],
-    "chords": ""
+    "pickup": 3,
+    "bars": "[8] * 32",
+    "notes": [1,1,1,1,1,11,1,1,1,1,1,11,1,1,1,3,1,3,1,3,1,1.33,1.33,1.33,1,1,11,1,1,1,3,1,3,1,2,4,2,3,1,3,1,6,2,3,1,3,1,2,4,2,5,1,1,1,4,-1,1,1,1,1,1,11,1,1,1,1,1,11,1,1,1,3,1,3,1,3,1,1.33,1.33,1.33,1,1,11,1,1,1,3,1,3,1,2,4,2,3,1,3,1,5,1,1,1,1,1,3,1,1,1,1,1,4,2,14,-4],
+    "chords": "[ AbM7 Bbm7 Cm7 Bbm7 Abadd6 Bbm7 Cm7 Bbm7 Abadd6 Bbm7 Bo7 Abadd6/C 4Bb7 Bbm7 Eb7 Gø7 C7b9 Fm7 Fm7/Eb [ Dø7 G7b9 Cm7 Fø7 2Bbsus4 2Bbm7 2Eb7 ] [ 2Do7 Bbm7 Ao7 Bbm7 Eb7 2Abadd6 Bbm7 Eb7  ] ]"
   },
-  "": {
+  "violets_for_your_furs": {
     "composer": [""],
     "keysig": "",
     "timesig": "4/4",
     "pickup": 0,
-    "bars": "",
-    "notes": [],
-    "chords": ""
+    "bars": "[8] * 32",
+    "notes": [2,1,1,0.67,0.67,0.67,1,1,5,1,1,1,2,1,1,2,2,1,7,2,1,1,0.67,0.67,0.67,1,1,5,1,1,1,2,1,1,2,2,1,5,-1,1,4,1,1,0.67,0.67,0.67,1,5,2,2,2,2,2,6,2,4,1,1,0.67,0.67,0.67,1,5,2,2,2,2,2,8,2,1,1,0.67,0.67,0.67,1,1,5,1,1,1,2,1,1,2,2,8,2,1,1,0.67,0.67,0.67,1,1,5,1,1,1,2,1,1,2,1,1,6,-1,1,2,2,2,2,2,4,2,2,2,2,2,6,-1,1.33,1.33,1.33,3,1,1,3,-1,1,1,1,2,1,1,0.67,0.67,0.67,1,1,4,-4],
+    "chords": "Gm7 C7 FM7 Fadd6 Bbm7 Eb7 FM7 D7b9 Gm7 C7 FM7 Fadd6 Am7 D7 Gm7 D7b9 Gm7 C7 FM7 D7 Gm7 C7 FM7 D7b9 Gm7 C7 FM7 D7 2G7 Gm7 C7 Gm7 C7 FM7 Fadd6 Bbm7 Eb7 FM7 D7b9 Gm7 C7 FM7 Fadd6 Am7 D7 2Gm7 2BbM7 2Eb7 2FM7 2D7 Db7 C+7 Fadd6 D7 Gm7 C7 Fadd6 D7b9"
   },
-  "": {
-    "composer": [""],
+  "virgo": {
+    "composer": ["Wayne Shorter"],
     "keysig": "",
     "timesig": "4/4",
     "pickup": 0,
-    "bars": "",
-    "notes": [],
-    "chords": ""
+    "bars": "[8] * 29",
+    "notes": [-1,3,3,1,1,5,1,3.67,0.67,0.67,1,3,8,-1,3,3,1,1,5,1,3.67,0.67,0.67,1,3,8,-1,3,2.67,0.67,0.67,1,5.67,0.67,0.67,1,5,1,5,4,6.67,0.67,0.67,1,3,2,1,7.67,0.67,0.67,3,1,3,1,-1,3,3,1,1,5,1,3.67,0.67,0.67,1,3,8,-1,3,3,1,1,5,1,3.67,0.67,0.67,1,3,1,1.67,0.67,0.67,1,3,1,1.67,0.67,0.67,1,3,8,-1,1.67,0.67,0.67,1,1,1,9,4,-4],
+    "chords": "2FM7 Bbm7 Eb7 Dø7 Bb7#11 2AM7 2Am7 Fm7 Bb7 Eø7 Eb7#11 2DM7 2Dm7 Cm7 F7 Eb7 D7 Gm7 Ab7 2DbM7 Dm7 G7 2Gm7 C#m7 F#7 2FM7 Bbm7 Eb7 Dø7 Bb7#11 2AM7 2Am7 Fm7 Bb7 Eø7 Eb7#11 Dm7 Db+7 Cm7 F7 2BbM7 E+7 A+7 2Dm7 Gm7 C7",
+    "comments": "CODA not included."
   },
   "watermelon_man": {
     "composer": [""],
