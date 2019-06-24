@@ -1292,6 +1292,11 @@ if not (has_augmented_triad or o_or_o7_or_ø7_chord):
             core_chord = core_chord.replace('7', '9')
             chordset -= {p2}
 
+    d = {
+        2: '9',
+        5: '11',
+        9: '13'
+    }
     for item in chordset:
         if (core_chord[-1] == '9' or core_chord[-2:] in ['11', '13']) and d[item] in [9, 11, 13]:
             continue

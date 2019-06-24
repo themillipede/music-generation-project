@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 """
 
 In many cases, there are a number of different jazz chord symbols that can be used to indicate the same
@@ -114,6 +116,42 @@ note_name_idx = {
     'Cb': 11,
     'B#': 0
 }
+
+
+# Each variable name describes a "flat", "perfect", or "sharp" note from the major scale.
+# Each value is the corresponding relative position in the 12-note chromatic scale.
+
+p1 = 0
+f2 = 1
+p2 = 2
+s2 = 3
+f3 = 3
+p3 = 4
+p4 = 5
+s4 = 6
+f5 = 6
+p5 = 7
+s5 = 8
+f6 = 8
+p6 = 9
+f7 = 10
+p7 = 11
+
+
+chord_name = OrderedDict([
+    (frozenset([0, 4, 7, 10]), '7'),
+    (frozenset([0, 4, 7, 11]), 'M7'),
+    (frozenset([0, 4, 8, 10]), '+7'),
+    (frozenset([0, 4, 8, 11]), '+M7'),
+    (frozenset([0, 3, 7, 10]), 'm7'),
+    (frozenset([0, 3, 7, 11]), 'mM7'),
+    (frozenset([0, 3, 6, 9]), 'o7'),
+    (frozenset([0, 3, 6, 10]), 'ø7'),
+    (frozenset([0, 4, 7]), ''),
+    (frozenset([0, 4, 8]), '+'),
+    (frozenset([0, 3, 7]), 'm'),
+    (frozenset([0, 3, 6]), 'o')
+])
 
 
 QUAVER_DURATION = 30
