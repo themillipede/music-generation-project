@@ -29,7 +29,7 @@ class Piece:
                     note_pitch=this_note.pitch,
                     root=this_chord.root,
                     bass=this_chord.bass,
-                    type_chordset=this_chord.type_chordset,
+                    core_chordset=this_chord.core_chordset,
                     full_chordset=this_chord.full_chordset,
                     bar_number=this_bar.number,
                     duration=timestep_duration,
@@ -70,16 +70,22 @@ class Piece:
 
 class Timestep:
     """
-    Every unique note/chord/bar combination gets its own timestep.
+    Every unique note/chord/bar combination has its own timestep. There are four (currently) redundant timestep
+    attributes (note_name, note_octave, core_chordset, and bar_number), which are included because they may end
+    up being used for alternative approaches to the modelling task. E.g. the chord representation core_chordset
+    is always a subset of full_chordset, and so any full_chordset in the dataset is likely to show up much less
+    than its corresponding core_chordset. If there are not enough data points for effective training when using
+    full_chordset, it may turn out that core_chordset (which still captures the essence of the chord) proves to
+    be more fruitful.
     """
-    def __init__(self, note_name, note_octave, note_pitch, root, bass, type_chordset,
+    def __init__(self, note_name, note_octave, note_pitch, root, bass, core_chordset,
                  full_chordset, bar_number, duration, is_tied, is_barline, same_note):
         self.note_name = note_name
         self.note_octave = note_octave
         self.note_pitch = note_pitch
         self.root = root
         self.bass = bass
-        self.type_chordset = type_chordset
+        self.core_chordset = core_chordset
         self.full_chordset = full_chordset
         self.bar_number = bar_number
         self.duration = duration

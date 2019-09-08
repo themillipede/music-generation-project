@@ -16,7 +16,7 @@ class Melody:
             i += 1 if num_quavers > 0 else 0
             self.melody.append(new_note)
 
-    def _get_melody_pitches(self, pitch_midi):
+    def _get_melody_pitches(self, pitch_midi):  # Should this be a static method?
         song = pm.PrettyMIDI(pitch_midi)
         inst = song.instruments[0].notes
         return [note.pitch for note in inst]
@@ -57,4 +57,4 @@ class Note:
 
 class EmptyNote(Note):
     def __init__(self):
-        self.time_remaining = 0
+        super().__init__(-1, 0)

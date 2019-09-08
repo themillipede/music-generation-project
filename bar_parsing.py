@@ -18,5 +18,4 @@ class Bar:
 
 class EmptyBar(Bar):
     def __init__(self):
-        self.number = -1
-        self.time_remaining = 0
+        super().__init__(-1, 0)
