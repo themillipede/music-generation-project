@@ -19,6 +19,28 @@ Upon initialisation, two more Note attributes are calculated from the pitch -- t
 takes one of 12 string values, corresponding to the letter-based name of the note (e.g. 'C', 'A', 'F#', where any
 non-natural note uses its sharp rather than flat version), and the octave takes an integer value corresponding to
 the octave of the note in MIDI format. If the note is a rest, then these both take the value None.
+
+
+The "Melody" Class
+==================
+
+This represents the sequence of notes comprising the melody of a single piece. It has a single attribute, melody,
+which is a list of Note objects in order, and which fully describes the melody of the piece. There are two main
+methods via which a Melody might be created from raw data: (1) By combining a list of relative note durations for
+the sequence of notes and a MIDI file containing the pitches of the notes in order, and (2) By inputting the MIDI
+representation of the full melody, in addition to the total piece duration.
+
+Note that the reason for including method (1) is that, in the absence of clean musical data in the desired format,
+it became more efficient for me to create my own from the non-computer-readable lead sheets that I wanted to use
+in my dataset. I found that, rather than creating the MIDI melodies directly by playing them into a digital piano
+(which seemed good in theory, but required either impeccable precision with timing, or a hell of a post-processing
+job tidying up all the timing issues, which turned out to be impossible to automate fully given the range of error),
+a much more efficient approach was to separate out the gathering of note pitches and note durations, and combine the
+two parts later. I did this by making both a MIDI file of the note pitches in the correct order (by playing them
+into a digital piano, without worrying about the timing), and a list of relative note durations in order (where the
+most frequently-occurring note duration, the quaver, had a relative duration of 1 -- the quickest to type!). The
+result of combining these two components is the same as that of reading in a perfect MIDI representation of the lead
+sheet (which is what method (2) does), and the process of creating the raw data takes surprisingly little time.
 """
 
 import pretty_midi as pm
