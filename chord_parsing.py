@@ -15,7 +15,7 @@ values of these attributes directly, or from a chord symbol string (e.g. 'AM7', 
 to extract the different chord components.
 
 
-The "ChordProgression" Class"
+The "ChordProgression" Class
 =============================
 
 This represents the sequence of chords comprising the chord progression of a single piece. It has a single attribute,
