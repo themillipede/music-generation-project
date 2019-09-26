@@ -77,8 +77,3 @@ class Note:
         name_octave = pm.note_number_to_name(self.pitch) if self.pitch > -1 else None
         self.name = name_octave.rstrip('0123456789') if name_octave else None
         self.octave = int(name_octave.lstrip(self.name)) if name_octave else None
-
-
-class EmptyNote(Note):
-    def __init__(self):
-        super().__init__(-1, 0)

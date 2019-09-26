@@ -26,7 +26,8 @@ for title, details in piece_data.items():
     print(title)
     if not details["chords"]:
         continue
-    melody = Melody(details['notes'], 'PitchMIDI/' + title + '_pitches' + '.MID')
+    midi_filename = 'PitchMIDI/' + title + '_pitches' + '.MID'
+    melody = Melody.from_duration_list_and_pitch_midi(details['notes'], midi_filename)
     chords = ChordProgression(details['chords'])
     bars = BarSequence(eval(details['bars']))
     piece = Piece(title, details['composer'], details['pickup'], melody.melody, chords.chords, bars.bars)

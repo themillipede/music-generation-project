@@ -1,4 +1,6 @@
-import note_parsing, chord_parsing, bar_parsing
+from note_parsing import Note
+from chord_parsing import Chord
+from bar_parsing import Bar
 
 from definitions import QUAVER_DURATION
 
@@ -9,9 +11,9 @@ class Piece:
         self.composer = composer
         self.pickup_duration = pickup_duration * QUAVER_DURATION
         self.timesteps = []
-        this_note = note_parsing.EmptyNote()
-        this_chord = chord_parsing.EmptyChord()
-        this_bar = bar_parsing.EmptyBar()
+        this_note = Note(-1, 0)
+        this_chord = Chord(None, None, set(), 0)
+        this_bar = Bar(-1, 0)
         n = -1
         c = -1
         b = -1
@@ -24,17 +26,17 @@ class Piece:
             )
             if timestep_duration > 0:  # This will never be true on the first loop.
                 this_timestep = Timestep(
-                    note_name=this_note.name,
-                    note_octave=this_note.octave,
                     note_pitch=this_note.pitch,
                     root=this_chord.root,
                     bass=this_chord.bass,
-                    core_chordset=this_chord.core_chordset,
                     full_chordset=this_chord.full_chordset,
-                    bar_number=this_bar.number,
                     duration=timestep_duration,
+                    same_note=same_note,
                     is_barline=is_barline,
-                    same_note=same_note
+                    bar_number=this_bar.number,
+                    note_name=this_note.name,
+                    note_octave=this_note.octave,
+                    core_chordset=this_chord.core_chordset
                 )
                 self.timesteps.append(this_timestep)
             elif self.pickup_duration > 0:
@@ -77,17 +79,17 @@ class Timestep:
     be more fruitful.
     """
     def __init__(self, note_pitch, root, bass, full_chordset, duration,
-                 same_note, note_name=None, note_octave=None,
-                 bar_number=None, is_barline=None, core_chordset=None):
+                 same_note, is_barline=None, bar_number=None,
+                 note_name=None, note_octave=None, core_chordset=None):
 
-        self.note_name = note_name
-        self.note_octave = note_octave
         self.note_pitch = note_pitch
         self.root = root
         self.bass = bass
-        self.core_chordset = core_chordset
         self.full_chordset = full_chordset
-        self.bar_number = bar_number
         self.duration = duration
-        self.is_barline = is_barline
         self.same_note = same_note
+        self.is_barline = is_barline
+        self.bar_number = bar_number
+        self.note_name = note_name
+        self.note_octave = note_octave
+        self.core_chordset = core_chordset

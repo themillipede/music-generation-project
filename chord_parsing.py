@@ -128,12 +128,3 @@ class Chord:
         for alt in alts_list:
             Chord._make_alteration(full_chordset, alt)
         return full_chordset
-
-
-# The purpose of EmptyChord is to provide an initial chord object, to enable the timestep-creation algorithm to
-# function straightforwardly while avoiding having default Chord class attribute values (i.e. which would allow
-# the option of Chord being initialized with None values, which shouldn't be allowed under normal circumstances.
-
-class EmptyChord(Chord):
-    def __init__(self):
-        super().__init__(None, None, set(), set(), 0)
