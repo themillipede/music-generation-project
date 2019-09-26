@@ -10,7 +10,9 @@ The full_chordset is a set containing a subset of the integers between 0 and 11,
 the full_chordset, but it represents the fundamental chord type that forms the basis of the full chord, and so the
 full_chordset may be an altered/suspended/extended version of the core_chordset (though they will often be identical).
 The duration attribute represents a relative duration, and takes an integer value, with a quaver taking the value 30.
-See "note_parsing" for a fuller explanation of why this scheme has been chosen.
+See "note_parsing" for a fuller explanation of why this scheme has been chosen. A chord may be created either from
+values of these attributes directly, or from a chord symbol string (e.g. 'AM7', 'C13#9', Eo7' etc.), which is parsed
+to extract the different chord components.
 
 
 The "ChordProgression" Class"
