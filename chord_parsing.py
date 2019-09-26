@@ -1,3 +1,29 @@
+"""
+The "Chord" Class
+=================
+
+This represents a single chord in a chord progression, and has attributes root, bass, full_chordset, duration, and
+core_chordset. The root and bass each take an integer value between 0 and 11, corresponding to a note in the C-based
+12-note chromatic scale (they will normally take the same value, but in "slash" chords, the bass note will differ).
+The full_chordset is a set containing a subset of the integers between 0 and 11, representing the relative positions
+(in the 12-note chromatic scale) of the notes comprising the full chord. The core_chordset has the same format as
+the full_chordset, but it represents the fundamental chord type that forms the basis of the full chord, and so the
+full_chordset may be an altered/suspended/extended version of the core_chordset (though they will often be identical).
+The duration attribute represents a relative duration, and takes an integer value, with a quaver taking the value 30.
+See "note_parsing" for a fuller explanation of why this scheme has been chosen.
+
+
+The "ChordProgression" Class"
+=============================
+
+This represents the sequence of chords comprising the chord progression of a single piece. It has a single attribute,
+chords, which is a list of Chord objects in order, and which fully describes the chord progression of the piece.
+
+The way a ChordProgression is created from raw data involves parsing a string containing the ordered chord symbols.
+The symbol for each chord with more than a relative duration of 1 is prepended with its relative duration. (The most
+frequently-occurring chord duration, a minim, is given a relative duration of 1, for more efficient data creation.)
+"""
+
 import re
 
 from definitions import chord_quality, triad_notes, seventh_notes, note_num_idx, MINIM_DURATION

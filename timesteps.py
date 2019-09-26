@@ -1,3 +1,26 @@
+"""
+The "Piece" Class
+=================
+
+This has attributes pertaining to the piece as a whole, and on initialisation, uses the input melody, chord and bar
+sequences to create an ordered list of timesteps, which describes the whole piece. Each timestep contains all of the
+attributes required for modelling, plus a few more (which though not required or used at this stage, are included as
+they could be useful when trying different modelling approaches).
+
+
+The "Timestep" Class
+====================
+
+A timestep here can be thought of as a cross-section of the piece at a particular point in time. But whereas a more
+typical approach would be to divide each bar into a fixed number of smaller sections, each of the same duration, and
+treat these as the timesteps (which results in quantisation of piece elements), here we create a new timestep only
+when there is a change to either the note, the chord, or the bar. This means that timesteps can have different
+durations, but that the duration is capped at the length of a full bar. Notes that are tied from a previous bar are
+flagged within the relevant timestep, so that no information is lost. The fact that the timesteps can take different
+durations means that any rhythm can be accommodated precisely, and the capping at the length of a bar means that it
+is feasible to represent all durations of notes that may realistically arise within a bar in a softmax for modelling.
+"""
+
 from note_parsing import Note
 from chord_parsing import Chord
 from bar_parsing import Bar
