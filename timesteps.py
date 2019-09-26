@@ -22,7 +22,7 @@ class Piece:
                 this_chord.time_remaining,
                 this_bar.time_remaining
             )
-            if timestep_duration > 0:
+            if timestep_duration > 0:  # This will never be true on the first loop.
                 this_timestep = Timestep(
                     note_name=this_note.name,
                     note_octave=this_note.octave,
@@ -33,7 +33,6 @@ class Piece:
                     full_chordset=this_chord.full_chordset,
                     bar_number=this_bar.number,
                     duration=timestep_duration,
-                    is_tied=False,
                     is_barline=is_barline,
                     same_note=same_note
                 )
@@ -49,7 +48,6 @@ class Piece:
                     this_note = melody[n]
                 same_note = False
             else:
-                this_timestep.is_tied = True
                 same_note = True
 
             this_chord.time_remaining -= timestep_duration
@@ -73,13 +71,15 @@ class Timestep:
     Every unique note/chord/bar combination has its own timestep. There are four (currently) redundant timestep
     attributes (note_name, note_octave, core_chordset, and bar_number), which are included because they may end
     up being used for alternative approaches to the modelling task. E.g. the chord representation core_chordset
-    is always a subset of full_chordset, and so any full_chordset in the dataset is likely to show up much less
+    will map to multiple full_chordsets, and so any full_chordset in the dataset is likely to show up much less
     than its corresponding core_chordset. If there are not enough data points for effective training when using
     full_chordset, it may turn out that core_chordset (which still captures the essence of the chord) proves to
     be more fruitful.
     """
-    def __init__(self, note_name, note_octave, note_pitch, root, bass, core_chordset,
-                 full_chordset, bar_number, duration, is_tied, is_barline, same_note):
+    def __init__(self, note_pitch, root, bass, full_chordset, duration,
+                 same_note, note_name=None, note_octave=None,
+                 bar_number=None, is_barline=None, core_chordset=None):
+
         self.note_name = note_name
         self.note_octave = note_octave
         self.note_pitch = note_pitch
@@ -89,6 +89,5 @@ class Timestep:
         self.full_chordset = full_chordset
         self.bar_number = bar_number
         self.duration = duration
-        self.is_tied = is_tied
         self.is_barline = is_barline
         self.same_note = same_note

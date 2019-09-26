@@ -1,8 +1,23 @@
 import numpy as np
-from note_parsing import Note
-from chord_parsing import Chord
-from bar_parsing import Bar
+from note_parsing import Note, EmptyNote
+from chord_parsing import Chord, EmptyChord
+from bar_parsing import Bar, EmptyBar
+from timesteps import Timestep
 from definitions import chord_name, p1, f2, p2, s2, f3, p3, p4, s4, f5, p5, s5, f6, p6, f7, p7
+
+
+def create_midi_from_output(melody, chords, bars):
+    pass  # TODO: convert output into MIDI format
+
+
+def load_samples(path):
+    batch = np.load(path)
+    samples = []
+    for sample in batch:
+        sample_timesteps = [timestep_object_from_vector(tvec) for tvec in sample]
+        decoded_sample = decode_timesteps(sample_timesteps)
+        samples.append(decoded_sample)
+    return samples  # One decoded_sample is a (melody, chords, bars) tuple.
 
 
 def timestep_object_from_vector(timestep_vector):
@@ -26,12 +41,7 @@ def timestep_object_from_vector(timestep_vector):
 
     duration_idx = np.argmax(duration_vec)
     duration = (duration_idx + 1) * 10
-
-    # Attributes set to None aren't totally necessary for the transformation to sheet music, and
-    # it is not yet clear how to elegantly produce some of the values.
-    return Timestep(note_name=None, note_octave=None, note_pitch=note_pitch, root=root, bass=bass,
-                    core_chordset=None, full_chordset=full_chordset, bar_number=None,
-                    duration=duration, is_tied=None, is_barline=None, same_note=same_note)
+    return Timestep(note_pitch, root, bass, full_chordset, duration, same_note)
 
 
 def decode_timesteps(timesteps):
@@ -44,42 +54,42 @@ def decode_timesteps(timesteps):
     melody = []
     chords = []
     bars = []
-    curr_note = Note()
-    curr_chord = Chord()
-    curr_bar = Bar()
-    is_tied = False
+    curr_note = EmptyNote()
+    curr_chord = EmptyChord()
     bar_number = -1
 
+    first_timestep = timesteps[0]
+
+    if first_timestep.same_note:
+        raise RuntimeError("Invalid output: first note is back-tied")
+
+    if not first_timestep.is_barline:  # There's a pickup.
+        curr_bar = Bar(bar_number, 0)
+
     for ts in timesteps:
-        if is_tied is True:  # or ts.same_note is True
+        if ts.same_note is True:
             curr_note.duration += ts.duration
         else:
             curr_note = Note(ts.pitch, ts.duration)
             melody.append(curr_note)
-            is_tied = ts.is_tied
-        if ts.chord == curr_chord:
+        if (ts.root, ts.bass, ts.full_chordset) == (curr_chord.root, curr_chord.bass, curr_chord.full_chordset):
             curr_chord.duration += ts.duration
         else:
-            curr_chord = Chord(ts.root, ts.bass, ts.core_chordset, ts.full_chordset, ts.duration)
+            curr_chord = Chord(ts.root, ts.bass, ts.full_chordset, ts.duration)
             chords.append(curr_chord)
         if ts.is_barline:
             bar_number += 1
-            curr_bar = Bar(ts.bar_number, ts.duration)
+            curr_bar = Bar(bar_number, ts.duration)
             bars.append(curr_bar)
         else:
             curr_bar.duration += ts.duration
     return melody, chords, bars
 
 
-def create_midi_from_output(melody, chords, bars):
-    pass
-
-
-def chord_symbol_from_object(chord):
+def get_chord_symbol(chord):
     root = chord.root
     bass = chord.bass
     chordset = chord.full_chordset
-    duration = chord.duration
     alts = []
 
     if {f3, p3}.isdisjoint(chordset) and {p2, p4}.intersection(chordset):
@@ -126,15 +136,4 @@ def chord_symbol_from_object(chord):
 
     chord_symbol = root + core_chord + ''.join(alts)
     chord_symbol += '/' + bass if bass != root else ''
-    return duration, chord_symbol
-
-
-def timestep_vectors(piece):
-    note_pitch = np.eye(38, dtype=int)[
-        [36 if ts.same_note else ts.note_pitch - 48 if ts.note_pitch > 0 else 37 for ts in piece]
-    ]
-    root = np.eye(13, dtype=int)[[note_name_idx[ts.root] if ts.root else 12 for ts in piece]]
-    bass = np.eye(13, dtype=int)[[note_name_idx[ts.bass] if ts.bass else 12 for ts in piece]]
-    chord = np.array([[i in ts.full_chordset for i in range(12)] for ts in piece], dtype=int)
-    duration = np.eye(24, dtype=int)[[int(ts.duration / 10 - 1) for ts in piece]]
-    return np.concatenate([note_pitch, root, bass, chord, duration], axis=1)
+    return chord_symbol

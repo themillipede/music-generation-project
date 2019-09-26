@@ -61,7 +61,7 @@ class ChordProgression:
 
 
 class Chord:
-    def __init__(self, root, bass, core_chordset, full_chordset, duration):
+    def __init__(self, root, bass, full_chordset, duration, core_chordset=None):
         self.root = root
         self.bass = bass
         self.core_chordset = core_chordset
@@ -74,7 +74,7 @@ class Chord:
         duration, root, core, alts, bass = Chord._constituents(chord_symbol)
         core_chordset = Chord._construct_core_chordset(core)
         full_chordset = Chord._construct_full_chordset(alts, core_chordset)
-        return cls(root, bass, core_chordset, full_chordset, duration)
+        return cls(root, bass, full_chordset, duration, core_chordset)
 
     @staticmethod
     def _constituents(chord_symbol):
