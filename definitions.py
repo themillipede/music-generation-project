@@ -1,4 +1,3 @@
-from collections import OrderedDict
 
 """
 
@@ -27,6 +26,8 @@ symbol used in this project has the same standard format, comprising the followi
    followed by the intended bass note, which is written in the same format as the root note in part (1).
 
 """
+
+from collections import OrderedDict
 
 
 # - The dict chord_quality defines the 12 core chord types, each of which has its own distinctive quality.
