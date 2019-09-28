@@ -59,8 +59,8 @@ def decode_timesteps(timesteps):
     melody = []
     chords = []
     bars = []
-    curr_note = EmptyNote()
-    curr_chord = EmptyChord()
+    curr_note = Note(-1, 0)
+    curr_chord = Chord(None, None, set(), 0)
     bar_number = -1
 
     first_timestep = timesteps[0]
